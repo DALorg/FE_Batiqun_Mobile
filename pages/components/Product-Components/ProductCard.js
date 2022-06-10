@@ -3,16 +3,12 @@ import Image from "next/dist/client/image";
 import { useDispatch } from "react-redux";
 import "../../../GlobalVariable";
 
-const KaryaCard = ({ ProductData, loading, error }) => {
+const ProductCard = ({ ProductData, loading, error }) => {
 
     return (
       <>
         <section className="container section section__height" id="home">
-          <div className="section-header">
-            <h2 className="section__title">Karya Terbaru</h2>
-            <a href="">see all</a>
-          </div>
-          <div className="items">
+          <div className="row">
           {loading
             ? "Loading..." : error ? error.message
             : ProductData.map((product) => (
@@ -65,4 +61,4 @@ const KaryaCard = ({ ProductData, loading, error }) => {
     );
   }
   
-  export default KaryaCard;
+  export default ProductCard;

@@ -1,9 +1,33 @@
 import Head from "next/head";
 import Image from "next/image";
+import { getProducts } from "../../redux/action/productAction";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "../../styles/Home.module.css";
+import { useRouter } from "next/router";
+import ProductCard from "../components/Product-Components/ProductCard";
 // import "../js/main.js";
 
-export default function Home() {
+export default function Products() {
+  const dispatch = useDispatch();
+  const allProductsData = useSelector((state) => state.Products);
+  const { loading, error, products } = allProductsData;
+
+  const router = useRouter();
+  const {Page}  = router.query;
+
+  var Pagess = 1;
+  var TotalDisplayed = 30;
+
+  if(Page){
+    Pagess = Page;
+  }
+
+  // LOAD DATA
+  useEffect(() => {
+    dispatch(getProducts(Pagess, TotalDisplayed));
+  }, []);
+
   return (
     <div>
       <Head>
@@ -52,126 +76,7 @@ export default function Home() {
       </header>
 
       <main>
-        <section className="container section section__height" id="home">
-          <div className="row">
-            <div className="wrapper">
-              <div className="card-rotate-bg"></div>
-              <div className="card">
-                <div className="card-head">
-                  <Image
-                    src="/vercel.svg"
-                    alt=""
-                    className="product-img"
-                    width="300"
-                    height="250"
-                  />
-                  <button className="buy-btn">Buy</button>
-                </div>
-                <div className="card-body">
-                  <h4 className="product-name">
-                    <a href="">Nama</a>
-                  </h4>
-                  <p className="deskripsi-product">Lorem Ipsum</p>
-                  <div className="wrapper-flex">
-                    <div className="current-price">
-                      0.001 <i className="fa-brands fa-ethereum"></i>
-                    </div>
-                    <div className="react">
-                      <i className="fa-regular fa-heart"></i> &nbsp; Favorites
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="wrapper">
-              <div className="card-rotate-bg"></div>
-              <div className="card">
-                <div className="card-head">
-                  <Image
-                    src="/vercel.svg"
-                    alt=""
-                    className="product-img"
-                    width="300"
-                    height="250"
-                  />
-                  <button className="buy-btn">Buy</button>
-                </div>
-                <div className="card-body">
-                  <h4 className="product-name">
-                    <a href="">Nama</a>
-                  </h4>
-                  <p className="deskripsi-product">Lorem Ipsum</p>
-                  <div className="wrapper-flex">
-                    <div className="current-price">
-                      0.001 <i className="fa-brands fa-ethereum"></i>
-                    </div>
-                    <div className="react">
-                      <i className="fa-regular fa-heart"></i> &nbsp; Favorites
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="wrapper">
-              <div className="card-rotate-bg"></div>
-              <div className="card">
-                <div className="card-head">
-                  <Image
-                    src="/vercel.svg"
-                    alt=""
-                    className="product-img"
-                    width="300"
-                    height="250"
-                  />
-                  <button className="buy-btn">Buy</button>
-                </div>
-                <div className="card-body">
-                  <h4 className="product-name">
-                    <a href="">Nama</a>
-                  </h4>
-                  <p className="deskripsi-product">Lorem Ipsum</p>
-                  <div className="wrapper-flex">
-                    <div className="current-price">
-                      0.001 <i className="fa-brands fa-ethereum"></i>
-                    </div>
-                    <div className="react">
-                      <i className="fa-regular fa-heart"></i> &nbsp; Favorites
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="wrapper">
-              <div className="card-rotate-bg"></div>
-              <div className="card">
-                <div className="card-head">
-                  <Image
-                    src="/vercel.svg"
-                    alt=""
-                    className="product-img"
-                    width="300"
-                    height="250"
-                  />
-                  <button className="buy-btn">Buy</button>
-                </div>
-                <div className="card-body">
-                  <h4 className="product-name">
-                    <a href="">Nama</a>
-                  </h4>
-                  <p className="deskripsi-product">Lorem Ipsum</p>
-                  <div className="wrapper-flex">
-                    <div className="current-price">
-                      0.001 <i className="fa-brands fa-ethereum"></i>
-                    </div>
-                    <div className="react">
-                      <i className="fa-regular fa-heart"></i> &nbsp; Favorites
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+          <ProductCard ProductData={products} loading={loading} error={error} />
       </main>
     </div>
   );
