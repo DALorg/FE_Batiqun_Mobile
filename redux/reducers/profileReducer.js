@@ -7,45 +7,45 @@ import {
 } from "./types";
 
 const initialState = {
-  users: [],
-  user: {},
+  profiles: [],
+  profile: {},
   bitSuccessEdit: null,
   loading: true,
 };
 
-export default function userReducer(state = initialState, action) {
+export default function profileReducer(state = initialState, action) {
   switch (action.type) {
     case GET_USERS:
       return {
         ...state,
-        user: action.payload.objData,
+        profile: action.payload.objData,
         loading: false,
       };
 
     case ADD_USERS:
       return {
         ...state,
-        users: state.users.concat(action.payload),
+        profiles: state.profiles.concat(action.payload),
         loading: false,
       };
 
     case EDIT_USERS:
       return {
         ...state,
-        users: state.users.map((user) =>
-          Number(user.id) === Number(action.payload.id)
-            ? (user = action.payload)
-            : user
+        profiles: state.profiles.map((profile) =>
+          Number(profile.id) === Number(action.payload.id)
+            ? (profile = action.payload)
+            : profile
         ),
         bitSuccessEdit: action.payload.bitSuccess,
         loading: false,
       };
 
     case DELETE_USERS:
-      const filteredState = state.users.filter(
-        (user) => Number(user.id) !== Number(action.payload.id)
+      const filteredState = state.profiles.filter(
+        (profile) => Number(profile.id) !== Number(action.payload.id)
       );
-      return { ...state, users: filteredState };
+      return { ...state, profiles: filteredState };
 
     case USERS_ERROR:
       return {
