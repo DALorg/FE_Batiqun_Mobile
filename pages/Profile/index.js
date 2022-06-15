@@ -7,7 +7,7 @@ import styles from "../../styles/Home.module.css";
 import { requireLogin } from "../../AuthVerification/requireLogin";
 import { useMoralis } from "react-moralis";
 import { getProfile, getUsers } from "../../redux/action/profileAction";
-import ProductCard from "../../Components/Product-Components/ProductCard";
+import ProductCard from "../../components/Product-Components/ProductCard";
 import Cookies from "js-cookie";
 import axios from "axios";
 import { useRouter } from "next/router";
