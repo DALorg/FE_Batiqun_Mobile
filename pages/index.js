@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getHomepage } from "../redux/action/homepageAction";
@@ -43,22 +44,28 @@ export default function Home() {
           <div className="nav__menu" id="nav-menu">
             <ul className="nav__list">
               <li className="nav__item">
-                <a href="#home" className="nav__link active-link">
-                  <i className="bx bx-home-alt nav__icon"></i>
-                  <span className="nav__name">Home</span>
-                </a>
+                <Link href="/">
+                  <a className="nav__link active-link">
+                    <i className="bx bx-home-alt nav__icon"></i>
+                    <span className="nav__name">Home</span>
+                  </a>
+                </Link>
               </li>
               <li className="nav__item">
-                <a href="/Leaderboards" className="nav__link">
-                  <i className="bx bx-bar-chart-alt-2 nav__icon"></i>
-                  <span className="nav__item">Leaderboards</span>
-                </a>
+                <Link href="/Leaderboards">
+                  <a className="nav__link">
+                    <i className="bx bx-bar-chart-alt-2 nav__icon"></i>
+                    <span className="nav__item">Leaderboards</span>
+                  </a>
+                </Link>
               </li>
               <li className="nav__item">
-                <a href="/Profile" className="nav__link">
-                  <i className="bx bx-user nav__icon"></i>
-                  <span className="nav__item">Profile</span>
-                </a>
+                <Link href="/Profile">
+                  <a className="nav__link">
+                    <i className="bx bx-user nav__icon"></i>
+                    <span className="nav__item">Profile</span>
+                  </a>
+                </Link>
               </li>
             </ul>
           </div>

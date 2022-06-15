@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/dist/client/image";
+import Link from "next/link";
 import { useDispatch } from "react-redux";
 import "../../../GlobalVariable";
 
@@ -9,7 +10,9 @@ const KaryaCard = ({ ProductData, loading, error }) => {
       <section className="container section section__height" id="home">
         <div className="section-header">
           <h2 className="section__title">Karya Terbaru</h2>
-          <a href="/Products">Lihat semua</a>
+          <Link href="/Products">
+            <a>Lihat semua</a>
+          </Link>
         </div>
         <div className="items">
           {loading

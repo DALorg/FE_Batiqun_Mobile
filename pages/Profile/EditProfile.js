@@ -146,10 +146,7 @@ function EditProfile() {
                         <div className="row">
                           <div className="col-lg-6">
                             <div className="form-group">
-                              <label
-                                className="form-control-label"
-                                for="input-full-name"
-                              >
+                              <label className="form-control-label">
                                 Fullname
                               </label>
                               <input
@@ -165,10 +162,7 @@ function EditProfile() {
                           </div>
                           <div className="col-lg-6">
                             <div className="form-group">
-                              <label
-                                className="form-control-label"
-                                for="input-email"
-                              >
+                              <label className="form-control-label">
                                 Email Address
                               </label>
                               <input
@@ -186,10 +180,7 @@ function EditProfile() {
                         <div className="row">
                           <div className="col-lg-6">
                             <div className="form-group">
-                              <label
-                                className="form-control-label"
-                                for="input-Password"
-                              >
+                              <label className="form-control-label">
                                 Password
                               </label>
                               <input
@@ -205,10 +196,7 @@ function EditProfile() {
                           </div>
                           <div className="col-lg-6">
                             <div className="form-group">
-                              <label
-                                className="form-control-label"
-                                for="input-tokenID"
-                              >
+                              <label className="form-control-label">
                                 Eth Address
                               </label>
                               <input
@@ -225,10 +213,7 @@ function EditProfile() {
                         <div className="row">
                           <div className="col-lg-6">
                             <div className="form-group">
-                              <label
-                                className="form-control-label"
-                                for="input-KTP"
-                              >
+                              <label className="form-control-label">
                                 Upload KTP
                               </label>
                               <input
@@ -243,10 +228,7 @@ function EditProfile() {
                           </div>
                           <div className="col-lg-6">
                             <div className="form-group">
-                              <label
-                                className="form-control-label"
-                                for="input-NIK"
-                              >
+                              <label className="form-control-label">
                                 NIK/Induk kependudukan
                               </label>
                               <input
@@ -272,10 +254,7 @@ function EditProfile() {
                         <div className="row">
                           <div className="col-lg-4">
                             <div className="form-group">
-                              <label
-                                className="form-control-label"
-                                for="input-twitter"
-                              >
+                              <label className="form-control-label">
                                 Twitter
                               </label>
                               <input
@@ -290,10 +269,7 @@ function EditProfile() {
                           </div>
                           <div className="col-lg-4">
                             <div className="form-group">
-                              <label
-                                className="form-control-label"
-                                for="input-instagram"
-                              >
+                              <label className="form-control-label">
                                 Instagram
                               </label>
                               <input
@@ -308,10 +284,7 @@ function EditProfile() {
                           </div>
                           <div className="col-lg-4">
                             <div className="form-group">
-                              <label
-                                className="form-control-label"
-                                for="input-website"
-                              >
+                              <label className="form-control-label">
                                 Website
                               </label>
                               <input
