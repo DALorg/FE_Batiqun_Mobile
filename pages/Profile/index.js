@@ -5,6 +5,7 @@ import styles from "../../styles/Home.module.css";
 import { requireLogin } from "../../AuthVerification/requireLogin";
 import { useMoralis } from "react-moralis";
 // import "../js/main.js";
+//abc
 
 const style = {
   bannerImageContainer: `h-64 w-screen overflow-hidden flex justify-center items-center`,
