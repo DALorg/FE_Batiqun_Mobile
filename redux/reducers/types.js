@@ -11,6 +11,10 @@ export const EDIT_USERS = "EDIT_USERS";
 export const DELETE_USERS = "DELETE_USERS";
 export const USERS_ERROR = "USERS_ERROR";
 
+export const LOGIN_ADMIN = "LOGIN_ADMIN";
+export const LOGIN_USERS = "LOGIN_USERS";
+export const LOGIN_ERROR = "LOGIN_ERROR";
+
 export const GET_LEADERBOARD = "GET_LEADERBOARD";
 export const LEADERBOARD_ERROR = "LEADERBOARD_ERROR";
 

@@ -55,7 +55,7 @@ export default function Home() {
                 </a>
               </li>
               <li className="nav__item">
-              <a href="/Profile" className="nav__link">
+                <a href="/Profile" className="nav__link">
                   <i className="bx bx-user nav__icon"></i>
                   <span className="nav__item">Profile</span>
                 </a>
@@ -66,10 +66,14 @@ export default function Home() {
       </header>
 
       <main>
-        <KaryaCard ProductData={homes.RencentProduct} loading={loading} error={error}/>
+        <KaryaCard
+          ProductData={homes.RencentProduct}
+          loading={loading}
+          error={error}
+        />
 
-        <UserLists UserData={homes.Users} loading={loading} error={error}/>
+        <UserLists UserData={homes.Users} loading={loading} error={error} />
       </main>
     </div>
-  )
+  );
 }
