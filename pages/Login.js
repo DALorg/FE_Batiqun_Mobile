@@ -6,6 +6,7 @@ import { useMoralis } from "react-moralis";
 import Cookies from "js-cookie";
 import { LoginUser } from "../redux/action/loginAction";
 import "../GlobalVariable";
+import Moralis from 'moralis';
 
 export default function Login() {
   function deleteAllCookies() {
@@ -57,9 +58,7 @@ export default function Login() {
 
   const metamaskAuth = async () => {
     try {
-      await authenticate({
-        signingMessage: "Auth to start lazy minting your NFTS",
-      });
+      await Moralis.authenticate();
     } catch (error) {
       console.log(error);
     }
