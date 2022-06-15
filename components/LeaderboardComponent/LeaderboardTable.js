@@ -1,5 +1,5 @@
 import React from "react";
-import "../../../GlobalVariable";
+import "../../GlobalVariable";
 const LeaderboardTable = ({ LeaderboardData, loading, error }) => {
   return (
     <>

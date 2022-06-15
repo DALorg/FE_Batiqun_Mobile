@@ -2,7 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "../../styles/Home.module.css";
-import { requireLogin } from "../AuthVerification/requireLogin";
+import { requireLogin } from "../../AuthVerification/requireLogin";
 import { useMoralis } from "react-moralis";
 // import "../js/main.js";
 

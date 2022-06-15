@@ -1,12 +1,20 @@
 import React from "react";
 import Image from "next/dist/client/image";
+import Link from "next/link";
 import { useDispatch } from "react-redux";
-import "../../../GlobalVariable";
+import "../../GlobalVariable";
 
-const ProductCard = ({ ProductData, loading, error }) => {
+const KaryaCard = ({ ProductData, loading, error }) => {
   return (
     <>
-      
+      <section className="container section section__height" id="home">
+        <div className="section-header">
+          <h2 className="section__title">Karya Terbaru</h2>
+          <Link href="/Products">
+            <a>Lihat semua</a>
+          </Link>
+        </div>
+        <div className="items">
           {loading
             ? "Loading..."
             : error
@@ -21,7 +29,7 @@ const ProductCard = ({ ProductData, loading, error }) => {
                           <Image
                             src={global.DataUrl + product.Product_image}
                             alt=""
-                            className="object-contain object-scale-down product-img"
+                            className="object-contain product-img"
                             width="300"
                             height="250"
                           />
@@ -37,7 +45,9 @@ const ProductCard = ({ ProductData, loading, error }) => {
                         <button className="buy-btn">Buy</button>
                       </div>
                       <div className="card-body">
-                        <a href="">{product.Nama_Product}</a>
+                        <h4 className="product-name">
+                          <a href="">{product.Nama_Product}</a>
+                        </h4>
                         <p className="deskripsi-product">
                           {product.Description}
                         </p>
@@ -56,9 +66,10 @@ const ProductCard = ({ ProductData, loading, error }) => {
                   </div>
                 </>
               ))}
-
+        </div>
+      </section>
     </>
   );
 };
 
-export default ProductCard;
+export default KaryaCard;

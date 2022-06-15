@@ -5,8 +5,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getHomepage } from "../redux/action/homepageAction";
 import styles from "../styles/Home.module.css";
-import KaryaCard from "./components/HomePage-Components/KaryaCard";
-import UserLists from "./components/HomePage-Components/UserList";
+import KaryaCard from "../components/HomePage-Components/KaryaCard";
+import UserLists from "../components/HomePage-Components/UserList";
 // import "../js/main.js";
 
 export default function Home() {

@@ -6,7 +6,7 @@ import {
   EDIT_USERS,
 } from "../reducers/types";
 import axios from "axios";
-import "../../styles/GlobalVariable";
+import "../../GlobalVariable";
 
 export const getUsers = (id, token) => async (dispatch) => {
   try {

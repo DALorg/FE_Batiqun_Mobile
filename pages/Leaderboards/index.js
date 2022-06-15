@@ -5,7 +5,7 @@ import styles from "../../styles/Home.module.css";
 import { getLeaderboards } from "../../redux/action/leaderboardAction";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import LeaderboardTable from "../components/LeaderboardComponent/LeaderboardTable";
+import LeaderboardTable from "../../components/LeaderboardComponent/LeaderboardTable";
 // import "../js/main.js";
 
 export default function Home() {

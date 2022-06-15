@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "../../styles/Home.module.css";
 import { useRouter } from "next/router";
-import ProductCard from "../components/Product-Components/ProductCard";
+import ProductCard from "../../components/Product-Components/ProductCard";
 // import "../js/main.js";
 
 export default function Products() {

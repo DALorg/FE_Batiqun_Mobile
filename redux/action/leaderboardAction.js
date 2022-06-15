@@ -1,7 +1,7 @@
 import { GET_LEADERBOARD, LEADERBOARD_ERROR } from "../reducers/types";
 import axios from "axios";
 import Cookies from "js-cookie";
-import "../../pages/components/ApiComponent/GlobalVariable";
+import "../../GlobalVariable";
 
 export const getLeaderboards = () => async (dispatch) => {
   try {

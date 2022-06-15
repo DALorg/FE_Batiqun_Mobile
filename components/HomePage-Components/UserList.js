@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import "../../../GlobalVariable";
+import "../../GlobalVariable";
 
 const UserLists = ({ UserData, loading, error }) => {
   return (
