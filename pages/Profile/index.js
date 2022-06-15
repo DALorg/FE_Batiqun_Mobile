@@ -6,8 +6,10 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "../../styles/Home.module.css";
 import { requireLogin } from "../../AuthVerification/requireLogin";
 import { useMoralis } from "react-moralis";
-import { getProfile } from "../../redux/action/profileAction";
+import { getProfile, getUsers } from "../../redux/action/profileAction";
+import ProductCard from "../../Components/Product-Components/ProductCard";
 import Cookies from "js-cookie";
+import axios from "axios";
 import { useRouter } from "next/router";
 // import "../js/main.js";
 //abc
@@ -67,13 +69,13 @@ export default function Home() {
   useEffect(() => {
     dispatch(
       getProfile(
-        (Cookies.get("ethAddress"),
+        Cookies.get("ethAddress"),
         Cookies.get("ethAddress"),
         Cookies.get("UserData"),
         created,
         favorite,
         Pagess,
-        TotalDisplayed)
+        TotalDisplayed
       )
     );
   }, []);
@@ -226,49 +228,42 @@ export default function Home() {
           <div className={style.midRow}>
             <div className="w-full mx-auto mt-4  rounded">
               <ul id="tabs" className="inline-flex w-full px-1 pt-2 ">
-                <li className="px-4 py-2 -mb-px font-semibold text-gray-800 border-b-2 border-blue-400 rounded-t opacity-50">
-                  <a id="default-tab" href="#collected">
+                <li className="px-4 py-2 -mb-px font-semibold text-gray-800 rounded-t opacity-50">
+                  <a
+                    id="default-tab"
+                    href="./Profile"
+                    className={
+                      !isCreated && !isFav ? "nav__link active-link" : "link"
+                    }
+                  >
                     Koleksi
                   </a>
                 </li>
                 <li className="px-4 py-2 font-semibold text-gray-800 rounded-t opacity-50">
-                  <a href="#created">Dibuat</a>
+                  <a
+                    href="./Profile?isCreated=true"
+                    className={isCreated ? "nav__link active-link" : "link"}
+                  >
+                    Dibuat
+                  </a>
                 </li>
                 <li className="px-4 py-2 font-semibold text-gray-800 rounded-t opacity-50">
-                  <a href="#favorit">Favorit</a>
+                  <a
+                    href="./Profile?isFav=true"
+                    className={isFav ? "nav__link active-link" : "link"}
+                  >
+                    Favorit
+                  </a>
                 </li>
               </ul>
 
               <div id="tab-contents">
                 <div id="collected" className="p-4">
-                  <div className="wrapper">
-                    <div className="card-rotate-bg"></div>
-                    <div className="card">
-                      <div className="card-head">
-                        <Image
-                          src="/profile.jpg"
-                          alt=""
-                          className="object-contain product-img"
-                          width="300"
-                          height="250"
-                        />
-                        <button className="buy-btn">Buy</button>
-                      </div>
-                      <div className="card-body">
-                        <a href="">DDDD</a>
-                        <p className="deskripsi-product">qqqq</p>
-                        <div className="wrapper-flex">
-                          <div className="current-price">
-                            <i className="fa-brands fa-ethereum"></i>&nbsp; ssss
-                          </div>
-                          <div className="react">
-                            <i className="fa-regular fa-heart"></i> &nbsp;
-                            Favorites
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <ProductCard
+                    ProductData={profile.Products}
+                    loading={loading}
+                    error={error}
+                  />
                 </div>
                 <div id="created" className="hidden p-4">
                   Second tab
