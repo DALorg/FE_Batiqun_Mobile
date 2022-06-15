@@ -12,7 +12,7 @@ import Cookies from "js-cookie";
 import axios from "axios";
 import { useRouter } from "next/router";
 // import "../js/main.js";
-//abc
+//abcde
 
 const style = {
   bannerImageContainer: `h-64 w-screen overflow-hidden flex justify-center items-center`,
