@@ -11,6 +11,7 @@ import ProductCard from "../../components/Product-Components/ProductCard";
 import Cookies from "js-cookie";
 import axios from "axios";
 import { useRouter } from "next/router";
+import "../../GlobalVariable";
 // import "../js/main.js";
 //abcde
 
@@ -24,10 +25,10 @@ const style = {
   socialIconsContainer: `flex text-3xl mb-[-2rem]`,
   socialIconsWrapper: `w-40`,
   socialIconsContent: `flex container justify-around text-[1.4rem] border-2 rounded-lg px-2`,
-  socialIcon: `my-2`,
+  socialIcon: `my-2 cursor-pointer`,
   divider: `border-r-2`,
   title: `text-5xl font-bold mb-4`,
-  createdBy: `text-lg mb-4`,
+  createdBy: `text-sm font-light mb-4`,
   statsContainer: `w-[78vw] flex justify-between py-4 border border-[#151b22] rounded-xl mb-4`,
   collectionStat: `w-1/4`,
   statValue: `text-3xl font-bold w-full flex items-center justify-center`,
@@ -40,7 +41,6 @@ export default function Home() {
   const dispatch = useDispatch();
   const allProfileData = useSelector((state) => state.Profiles);
   const { loading, error, profile } = allProfileData;
-  console.log(profile);
   const { logout } = useMoralis();
 
   const router = useRouter();
@@ -166,7 +166,7 @@ export default function Home() {
           <div className={style.midRow}>
             <img
               className={style.profileImg}
-              src="profile.jpg"
+              src={global.DataUrl + profile.Profile_Image}
               alt="profile image"
             />
           </div>
@@ -198,36 +198,41 @@ export default function Home() {
             </div>
           </div>
           <div className={style.midRow}>
-            <div className={style.title}>adssa</div>
+            <div className={style.title}>{profile.txtFullName}</div>
           </div>
           <div className={style.midRow}>
             <div className={style.createdBy}>
               <i className="fa-brands fa-ethereum" />
-              TOKEN
+              &nbsp;{profile.ethAddress}
             </div>
           </div>
           <div className={style.midRow}>
             <div className={style.statsContainer}>
               <div className={style.collectionStat}>
-                <div className={style.statValue}>342</div>
-                <div className={style.statName}>items</div>
+                <div className={style.statValue}>{profile.TotalCreated}</div>
+                <div className={style.statName}>created</div>
               </div>
               <div className={style.collectionStat}>
-                <div className={style.statValue}>213</div>
-                <div className={style.statName}>owners</div>
+                <div className={style.statValue}>
+                  {profile.TotalCollections}
+                </div>
+                <div className={style.statName}>owned</div>
               </div>
               <div className={style.collectionStat}>
                 <div className={style.statValue}>
                   <i className="fa-brands fa-ethereum"></i>
-                  4241
+                  &nbsp;4241
                 </div>
                 <div className={style.statName}>floor price</div>
               </div>
             </div>
           </div>
           <div className={style.midRow}>
-            <div className="w-full mx-auto mt-4  rounded">
-              <ul id="tabs" className="inline-flex w-full px-1 pt-2 ">
+            <div className="w-full mx-auto mt-4 rounded">
+              <ul
+                id="tabs"
+                className="inline-flex w-full px-2 pt-2 pb-4 border-b-2"
+              >
                 <li className="px-4 py-2 -mb-px font-semibold text-gray-800 rounded-t opacity-50">
                   <a
                     id="default-tab"
@@ -258,12 +263,14 @@ export default function Home() {
               </ul>
 
               <div id="tab-contents">
-                <div id="collected" className="p-4">
-                  <ProductCard
-                    ProductData={profile.Products}
-                    loading={loading}
-                    error={error}
-                  />
+                <div id="collected" className="p-8">
+                  <div className="row px-28">
+                    <ProductCard
+                      ProductData={profile.Products}
+                      loading={loading}
+                      error={error}
+                    />
+                  </div>
                 </div>
                 <div id="created" className="hidden p-4">
                   Second tab

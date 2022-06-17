@@ -6,7 +6,9 @@ import { useMoralis } from "react-moralis";
 import Cookies from "js-cookie";
 import { LoginUser } from "../redux/action/loginAction";
 import "../GlobalVariable";
-import Moralis from 'moralis';
+import Moralis from "moralis";
+
+import Swal from "sweetalert2";
 
 export default function Login() {
   function deleteAllCookies() {

@@ -18,6 +18,10 @@ export const LOGIN_ERROR = "LOGIN_ERROR";
 export const GET_LEADERBOARD = "GET_LEADERBOARD";
 export const LEADERBOARD_ERROR = "LEADERBOARD_ERROR";
 
+export const GET_PA = "GET_PA";
+export const EDIT_PA = "EDIT_PA";
+export const PA_ERROR = "PA_ERROR";
+
 export const GET_PRODUCTS = "GET_PRODUCTS";
 export const PRODUCTS_ERROR = "PRODUCTS_ERROR";
 export const GET_BY_ID_PRODUCTS = "GET_BY_ID_PRODUCTS";
