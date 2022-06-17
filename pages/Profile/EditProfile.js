@@ -60,68 +60,55 @@ function EditProfile() {
           <div className="container-fluid py-1">
             <div className="row">
               <div className="col-lg-4">
-                {/* <div className="bg-white rounded-2xl border shadow-x1 p-10 max-w-lg">
-                  <div className="flex flex-col items-center space-y-4">
-                    <h1 className="font-bold text-2xl text-yellow-900">
-                      Edit Profile Picture
-                    </h1>
-                    <img className="rounded-full w-5/6" src="" />
-                  </div>
-                </div> */}
-                <div className="card mt-3">
-                  <div className="card-header">
-                    <div className="row items-center">
-                      <div className="col-8">
-                        <h3 className="font-bold text-2xl text-yellow-900">
-                          Edit profile picture
-                        </h3>
-                      </div>
+                <div className="max-w-screen-lg rounded mt-3 overflow-hidden shadow-sm bg-[#fff]">
+                  <div className="px-6 py-4 grid place-content-center">
+                    <div className="font-bold text-xl mb-2">
+                      Ubah Foto Profil
                     </div>
-                  </div>
-                  <div className="card-body text-center">
                     <img
-                      src=""
-                      alt="profile_pict"
-                      className="rounded-circle edit"
+                      className="rounded-full h-40 w-40 object-center"
+                      src="../../profile.jpg"
+                      alt="Sunset in the mountains"
                     />
-                    <input
-                      type="file"
-                      accept="image/*"
-                      name="image-upload"
-                      id="input"
-                      className="upload_pict"
-                      // onChange={this.imageHandler}
-                    />
-                    <div className="label">
-                      <label className="image-upload" htmlFor="input">
-                        <i className="material-icons">add_a_photo</i> &nbsp;
-                        Choose profile picture
+                  </div>
+                  <div className="px-6 pt-4 pb-2">
+                    <div className="form-group">
+                      <label className="form-control-label">
+                        Upload Foto Profil
                       </label>
+                      <input
+                        type="file"
+                        className="form-control"
+                        placeholder="choose file"
+                        name="file"
+                        //   onChange={handleFile}
+                        required
+                      />
                     </div>
                   </div>
                 </div>
-                <div className="card mt-3">
-                  <div className="card-header">
-                    <div className="row align-items-center">
-                      <div className="col-8">
-                        <h3 className="mb-0">Edit Banner picture</h3>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="card-profile">
-                    <img src="" alt="bannerPict" className="card-img-top" />
-                    <input
-                      type="file"
-                      accept="image/*"
-                      name="image-upload"
-                      className="upload_pict"
-                      // onChange={}
+                <div className="max-w-screen-lg rounded mt-3 overflow-hidden shadow-sm bg-[#fff]">
+                  <div className="px-6 py-4 grid place-content-center">
+                    <div className="font-bold text-xl mb-2 ">Ubah Header</div>
+                    <img
+                      className="rounded-full h-40 w-40 object-center"
+                      src="../../profile.jpg"
+                      alt="Sunset in the mountains"
                     />
-                    <div className="label1">
-                      <label className="image-upload" htmlFor="input">
-                        <i className="material-icons">add_a_photo</i>
-                        Choose profile picture
+                  </div>
+                  <div className="px-6 pt-4 pb-2">
+                    <div className="form-group">
+                      <label className="form-control-label">
+                        Upload Header
                       </label>
+                      <input
+                        type="file"
+                        className="form-control"
+                        placeholder="choose file"
+                        name="file"
+                        //   onChange={handleFile}
+                        required
+                      />
                     </div>
                   </div>
                 </div>
@@ -206,40 +193,6 @@ function EditProfile() {
                                 //   onChange={handleChangeEdit}
                                 //   value={userEdit.ethAddress}
                                 disabled
-                              />
-                            </div>
-                          </div>
-                        </div>
-                        <div className="row">
-                          <div className="col-lg-6">
-                            <div className="form-group">
-                              <label className="form-control-label">
-                                Upload KTP
-                              </label>
-                              <input
-                                type="file"
-                                className="form-control"
-                                placeholder="choose file"
-                                name="file"
-                                //   onChange={handleFile}
-                                required
-                              />
-                            </div>
-                          </div>
-                          <div className="col-lg-6">
-                            <div className="form-group">
-                              <label className="form-control-label">
-                                NIK/Induk kependudukan
-                              </label>
-                              <input
-                                type="number"
-                                className="form-control"
-                                placeholder="enter your id number"
-                                name="NIK"
-                                required
-                                // minLength="16"
-                                //   onChange={handleChangeEdit}
-                                //   value={userEdit.NIK}
                               />
                             </div>
                           </div>
