@@ -17,13 +17,6 @@ function EditProfile() {
       <header className="header" id="header">
         <nav className="nav container">
           <a href="https://nextjs.org">Batiqun</a>
-          {/* <input
-            id="quick_search"
-            className="xs-hide style-2"
-            name="quick_search"
-            placeholder="search item here..."
-            type="text"
-          /> */}
           <div className="nav__menu" id="nav-menu">
             <ul className="nav__list">
               <li className="nav__item">
