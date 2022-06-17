@@ -3,12 +3,12 @@ import "../../GlobalVariable";
 const LeaderboardTable = ({ LeaderboardData, loading, error }) => {
   return (
     <>
-      <table className="min-w-max w-full table-auto">
+      <table className="min-w-max w-full max-w-screen table-fixed">
         <thead>
           <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
             <th className="py-3 px-6 text-left">Nama</th>
             <th className="py-3 px-6 text-center">Item dimiliki</th>
-            <th className="py-3 px-6 text-center">Volume Traded</th>
+            <th className="py-3 px-6 text-center">Volume Transaksi</th>
           </tr>
         </thead>
         {loading
