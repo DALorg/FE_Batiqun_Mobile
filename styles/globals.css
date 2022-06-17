@@ -5,7 +5,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/*=============== VARIABLES CSS ===============*/
+/*=============== VARIABLES CSS =============*/
 :root {
   --header-height: 3rem;
 
