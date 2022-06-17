@@ -1339,7 +1339,7 @@
 
 "@walletconnect/web3-provider@^1.7.8":
   version "1.7.8"
-  resolved "https://registry.npmjs.org/@walletconnect/web3-provider/-/web3-provider-1.7.8.tgz"
+  resolved "https://registry.yarnpkg.com/@walletconnect/web3-provider/-/web3-provider-1.7.8.tgz#fe9b66a4010ee831db664a3fe5014d67a758a1fc"
   integrity sha512-2VxGo7KPfQTWRJ+rygt3ok/u04InkVE+H9LBIF/RMUwcwyGf2nsP3CcYZVcg3yYpacgN7bAZCersCEYwU8AeeA==
   dependencies:
     "@walletconnect/client" "^1.7.8"
