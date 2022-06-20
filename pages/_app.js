@@ -3,6 +3,7 @@ import "../styles/globals.css";
 import { Provider } from "react-redux";
 import { MoralisProvider } from "react-moralis";
 import store from "../redux/store/store";
+import styled from "styled-components";
 
 function MyApp({ Component, pageProps }) {
   return (

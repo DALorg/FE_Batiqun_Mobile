@@ -6,7 +6,10 @@ import Purchase from "../../components/ProductDetail/Purchase";
 import ItemActivity from "../../components/ProductDetail/ItemActivity";
 import Image from "next/image";
 import Link from "next/link";
-import Devices from "./Utility";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/dist/client/router";
+import { getById } from "../../redux/action/productAction";
 
 const style = {
   wrapper: `flex flex-col items-center text-[#e5e8eb]`,
@@ -15,7 +18,18 @@ const style = {
   nftImgContainer: `flex-1 mr-4`,
   detailsContainer: `flex-[2] ml-4`,
 };
-export default function index() {
+export default function ProductDetail() {
+  const dispatch = useDispatch();
+  const allProductsData = useSelector((state) => state.Products);
+  const { loading, error, product } = allProductsData;
+  const router = useRouter();
+  const { pid } = router.query;
+  console.log(pid);
+  console.log(product);
+  // LOAD DATA
+  useEffect(() => {
+    dispatch(getById(pid));
+  }, []);
   return (
     //
     <article className="AssetEl">
@@ -83,7 +97,7 @@ export default function index() {
         </div>
         <div className="RightSection">
           <span>
-            <h1 className="Title">KING BITCOIN</h1>
+            <h1 className="Title">{product.Nama_Product}</h1>
           </span>
           <p className="Des">
             King Bitcoin is the oldest and wisest of the cryptoskeletons. When

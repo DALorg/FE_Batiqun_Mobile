@@ -27,7 +27,7 @@ const ItemActivity = () => {
           <span className={style.titleIcon}>
             <CgArrowsExchangeV />
           </span>
-          Item Activity
+          Aktivitas NFT
         </div>
         <div className={style.titleRight}>
           {toggle ? <AiOutlineUp /> : <AiOutlineDown />}
@@ -44,10 +44,14 @@ const ItemActivity = () => {
           </div> */}
           <div className={style.tableHeader}>
             <div className={`${style.tableHeaderElement} flex-[2]`}>Event</div>
-            <div className={`${style.tableHeaderElement} flex-[2]`}>Price</div>
-            <div className={`${style.tableHeaderElement} flex-[3]`}>From</div>
-            <div className={`${style.tableHeaderElement} flex-[3]`}>To</div>
-            <div className={`${style.tableHeaderElement} flex-[2]`}>Date</div>
+            <div className={`${style.tableHeaderElement} flex-[2]`}>Harga</div>
+            <div className={`${style.tableHeaderElement} flex-[3]`}>Dari</div>
+            <div className={`${style.tableHeaderElement} flex-[3]`}>
+              Penerima
+            </div>
+            <div className={`${style.tableHeaderElement} flex-[2]`}>
+              Etherscan
+            </div>
           </div>
           {dummyEvents.map((event, id) => (
             <EventItem key={id} event={event} />

@@ -1,4 +1,8 @@
-import { GET_PRODUCTS, PRODUCTS_ERROR } from "../reducers/types";
+import {
+  GET_PRODUCTS,
+  GET_BY_ID_PRODUCTS,
+  PRODUCTS_ERROR,
+} from "../reducers/types";
 import axios from "axios";
 import Cookies from "js-cookie";
 
@@ -38,8 +42,8 @@ export const getById = (id) => async (dispatch) => {
     await axios
       .post(`https://batiqunapi.azurewebsites.net/api/product/get`, {
         objRequestData: {
-          ProductId: id,
-        },
+          ProductId: id
+        }
       })
       .then((response) => {
         dispatch({
@@ -47,6 +51,7 @@ export const getById = (id) => async (dispatch) => {
           payload: response.data.objData,
         });
       });
+    console.log(response.data.objData);
   } catch (error) {
     dispatch({
       type: PRODUCTS_ERROR,

@@ -42,7 +42,9 @@ const KaryaCard = ({ ProductData, loading, error }) => {
                             height="250"
                           />
                         )}
-                        <button className="buy-btn">Buy</button>
+                        <Link href={"Products/" + product.encProductId}>
+                          <button className="buy-btn">Buy</button>
+                        </Link>
                       </div>
                       <div className="card-body">
                         <h4 className="product-name">
