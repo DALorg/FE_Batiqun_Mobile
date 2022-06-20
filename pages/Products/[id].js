@@ -8,28 +8,24 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useRouter } from "next/dist/client/router";
+import { useRouter } from 'next/router'
 import { getById } from "../../redux/action/productAction";
 
-const style = {
-  wrapper: `flex flex-col items-center text-[#e5e8eb]`,
-  container: `p-6`,
-  topContent: `flex`,
-  nftImgContainer: `flex-1 mr-4`,
-  detailsContainer: `flex-[2] ml-4`,
-};
-export default function ProductDetail() {
+
+const ProductDetail = () => {
   const dispatch = useDispatch();
   const allProductsData = useSelector((state) => state.Products);
   const { loading, error, product } = allProductsData;
+
   const router = useRouter();
-  const { pid } = router.query;
-  console.log(pid);
-  console.log(product);
+  const {id}  = router.query;
+
+  console.log(id);
   // LOAD DATA
   useEffect(() => {
-    dispatch(getById(pid));
+    dispatch(getById(id));
   }, []);
+
   return (
     //
     <article className="AssetEl">
@@ -135,3 +131,5 @@ export default function ProductDetail() {
     </article>
   );
 }
+
+export default ProductDetail;
