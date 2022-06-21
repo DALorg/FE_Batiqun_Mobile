@@ -18,7 +18,7 @@ const style = {
   accent: `text-slate-900`,
 };
 
-const ItemActivity = () => {
+const ItemActivity = ({PA}) => {
   const [toggle, setToggle] = useState(true);
   return (
     <div className={style.wrapper}>
@@ -53,7 +53,7 @@ const ItemActivity = () => {
               Etherscan
             </div>
           </div>
-          {dummyEvents.map((event, id) => (
+          {PA.Product_Activities?.map((event, id) => (
             <EventItem key={id} event={event} />
           ))}
         </div>

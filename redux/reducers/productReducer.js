@@ -1,13 +1,13 @@
 import {
     GET_PRODUCTS,
     PRODUCTS_ERROR,
-    GET_BY_ID_PRODUCTS
+    GET_BY_ID_PRODUCTS,
+    EDIT_PRODUCTS
   } from "./types";
   
   const initialState = {
     products: [],
     product: {},
-    bitSuccessEdit: null,
     loading: true,
   };
   
@@ -17,7 +17,6 @@ import {
         return {
           ...state,
           products: action.payload,
-          bitSuccessEdit: null,
           loading: false,
         };
         
@@ -25,14 +24,25 @@ import {
         return {
           ...state,
           product: action.payload,
-          bitSuccessEdit: null,
           loading: false,
         };
+
+        case EDIT_PRODUCTS:
+          return {
+            ...state,
+            products: state.products.map((product) =>
+              Number(product.id) === Number(action.payload.id)
+                ? (product = action.payload)
+                : product
+            ),
+            loading: false,
+          };
   
       case PRODUCTS_ERROR:
         return {
           loading: false,
           error: action.payload,
+          product: null,
         };
   
       default:

@@ -42,7 +42,7 @@ const KaryaCard = ({ ProductData, loading, error }) => {
                             height="250"
                           />
                         )}
-                        <Link href={"Products/" + product.encProductId}>
+                        <Link href={{ pathname: '/Products/[id]', query: { id: product.encProductId },}}>
                           <button className="buy-btn">Buy</button>
                         </Link>
                       </div>
