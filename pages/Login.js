@@ -87,10 +87,12 @@ export default function Login() {
       var accounts = await web3.eth.getAccounts();
       setAccount(accounts[0]);
     }catch{
-      Swal.fire(
-        "Oops...",
-        "Something went wrong!",
-        "error"
+      Swal.fire({
+        title: "Oops...",
+        text: "Something went wrong!",
+        icon: "error",
+        confirmButtonColor: '#9b6b43'
+      }
     )
     }
 
