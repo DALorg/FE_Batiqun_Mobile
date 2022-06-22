@@ -12,13 +12,14 @@ const style = {
   titleRight: `text-xl`,
   filter: `flex items-center border border-[#151b22] mx-4 my-6 px-3 py-4 rounded-xl bg-[#363840]`,
   filterTitle: `flex-1`,
-  tableHeader: `flex w-full bg-[#eaeaeb] text-slate-900 border-y mt-8 px-4 py-1`,
+  tableHeader: `flex min-w-max sticky w-full max-w-screen bg-[#eaeaeb] text-slate-900 border-y mt-8 px-4 py-1`,
   eventItem: `flex px-4`,
   ethLogo: `h-5 mr-2`,
   accent: `text-slate-900`,
+  activityTable: `overflow-x-auto flex flex-col max-h-80 w-full`,
 };
 
-const ItemActivity = ({PA}) => {
+const ItemActivity = ({ PA }) => {
   const [toggle, setToggle] = useState(true);
   return (
     <div className={style.wrapper}>
@@ -35,22 +36,31 @@ const ItemActivity = ({PA}) => {
       </div>
       {toggle && (
         <div className={style.activityTable}>
-          {/* <div className={style.filter}>
-            <div className={style.filterTitle}>Filter</div>
-            <div className={style.filterIcon}>
-              {" "}
-              <AiOutlineDown />{" "}
-            </div>
-          </div> */}
           <div className={style.tableHeader}>
-            <div className={`${style.tableHeaderElement} flex-[2]`}>Event</div>
-            <div className={`${style.tableHeaderElement} flex-[2]`}>Harga</div>
-            <div className={`${style.tableHeaderElement} flex-[3]`}>Dari</div>
-            <div className={`${style.tableHeaderElement} flex-[3]`}>
+            <div
+              className={`${style.tableHeaderElement} grow shrink-0 basis-24`}
+            >
+              Event
+            </div>
+            <div
+              className={`${style.tableHeaderElement} grow shrink-0 basis-24`}
+            >
+              Harga
+            </div>
+            <div
+              className={`${style.tableHeaderElement} grow shrink-0 basis-24`}
+            >
+              Dari
+            </div>
+            <div
+              className={`${style.tableHeaderElement} grow shrink-0 basis-24`}
+            >
               Penerima
             </div>
-            <div className={`${style.tableHeaderElement} flex-[2]`}>
-              Etherscan
+            <div
+              className={`${style.tableHeaderElement} grow shrink-0 basis-24`}
+            >
+              Tanggal
             </div>
           </div>
           {PA.Product_Activities?.map((event, id) => (

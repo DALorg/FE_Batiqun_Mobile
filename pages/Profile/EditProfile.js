@@ -1,8 +1,185 @@
 import Head from "next/head";
 import Link from "next/link";
 import { Button } from "reactstrap";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/router";
+import { editUser, getUsers } from "../../redux/action/profileAction";
+import Cookies from "js-cookie";
+import Swal from "sweetalert2";
+import axios from "axios";
+import "../../GlobalVariable";
 
-function EditProfile() {
+const EditProfile = () => {
+  const dispatch = useDispatch();
+  const allProfileData = useSelector((state) => state.Profiles);
+  const { loading, error, profile, bitSuccessEdit } = allProfileData;
+
+  useEffect(() => {
+    dispatch(getUsers(Cookies.get("ethAddress"), Cookies.get("UserData")));
+  }, []);
+
+  const [userEdit, setUserEdit] = useState({
+    txtFullName: profile.txtFullName,
+    txtEmail: profile.txtEmail,
+    txtPassword: profile.txtPassword,
+    txtCreatedBy: "profile",
+    dtmCreatedDate: "2022-06-05",
+    txtUpdatedBy: "profile",
+    dtmUpdatedDate: "2022-06-05",
+    NIK: profile.NIK,
+    Bio: profile.Bio,
+    Twitter: profile.Twitter,
+    Instagram: profile.Instagram,
+    Website: profile.Website,
+    file_banner: null,
+    file_profile: null,
+  });
+
+  const handleChangeEdit = (e) => {
+    let data = { ...userEdit };
+    data[e.target.name] = e.target.value;
+    setUserEdit(data);
+  };
+
+  console.log(userEdit);
+
+  const handleFilePP = (e) => {
+    let data = { ...userEdit };
+    let file = e.target.files[0];
+    var extension = file.type;
+    var extension_value = extension.replace("image/", ".");
+    var blob = file.slice(0, file.size, extension);
+    let newFile = new File([blob], "PP" + extension_value, { type: extension });
+    data[e.target.name] = newFile;
+
+    setUserEdit(data);
+  };
+
+  const handleFileBanner = (e) => {
+    let data = { ...userEdit };
+    let file = e.target.files[0];
+    var extension = file.type;
+    var extension_value = extension.replace("image/", ".");
+    var blob = file.slice(0, file.size, extension);
+    let newFile = new File([blob], "Banner" + extension_value, {
+      type: extension,
+    });
+    data[e.target.name] = newFile;
+
+    setUserEdit(data);
+  };
+
+  const handleUpdate = (e) => {
+    e.preventDefault();
+    Swal.fire({
+      title: "Loading, Please Wait!",
+      html: "I will close in milliseconds.",
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+      },
+    });
+
+    let formData = new FormData();
+    formData.append("PP", userEdit.file_profile);
+    formData.append("Banner", userEdit.file_banner);
+
+    axios({
+      url: "https://batiqunapi.azurewebsites.net/api/user/uploadfile",
+      method: "POST",
+      data: formData,
+    }).then((res) => {
+      var NIKS = userEdit.NIK;
+      var Fulname = userEdit.txtFullName;
+      var mails = userEdit.txtEmail;
+      var NIK_phot = userEdit.file;
+      var ppss = userEdit.file_profile;
+      var banne = userEdit.file_banner;
+      var bias = userEdit.Bio;
+      var twtr = userEdit.Twitter;
+      var we3 = userEdit.Website;
+      var insta = userEdit.Instagram;
+      var pws = userEdit.txtPassword;
+      if (NIK_phot == null) {
+        NIK_phot = profile.NIK_Photo;
+      }
+      if (NIKS == null) {
+        NIKS = profile.NIK;
+      }
+      if (Fulname == null) {
+        Fulname = profile.txtFullName;
+      }
+      if (mails == null) {
+        mails = profile.txtEmail;
+      }
+      if (pws == null) {
+        pws = profile.txtPassword;
+      }
+      if (twtr == null) {
+        twtr = profile.Twitter;
+      }
+      if (bias == null) {
+        bias = profile.Bio;
+      }
+      if (insta == null) {
+        insta = profile.Instagram;
+      }
+      if (we3 == null) {
+        we3 = profile.Website;
+      }
+      if (ppss == null) {
+        ppss = profile.Profile_Image;
+      } else {
+        ppss = res.data.objData.PPimage;
+      }
+      if (banne == null) {
+        banne = profile.Profile_Baner;
+      } else {
+        banne = res.data.objData.BannerImage;
+      }
+      dispatch(
+        editUser(
+          {
+            intUserId: profile.encUserId,
+            txtFullName: Fulname,
+            txtEmail: mails,
+            txtUsername: profile.txtUsername,
+            txtPassword: pws,
+            ethAddress: profile.ethAddress,
+            NIK: NIKS,
+            NIK_Photo: NIK_phot,
+            Profile_Baner: banne,
+            Profile_Image: ppss,
+            Bio: bias,
+            Twitter: twtr,
+            Instagram: insta,
+            Website: we3,
+            txtCreatedBy: "profile",
+            dtmCreatedDate: "2022-06-05",
+            txtUpdatedBy: "profile",
+            dtmUpdatedDate: "2022-06-05",
+          },
+          Cookies.get("UserData")
+        )
+      );
+    });
+  };
+
+  if (bitSuccessEdit == true) {
+    Swal.fire(
+      "Berhasil Update Profile!",
+      "Profile Berhasil di Update",
+      "success"
+    ).then(function () {
+      bitSuccessEdit = null;
+    });
+  } else if (bitSuccessEdit == false) {
+    Swal.fire("Oops...", "Something went wrong!", "error").then(function () {
+      bitSuccessEdit = null;
+    });
+  }
+
   return (
     <div>
       <Head>
@@ -38,7 +215,7 @@ function EditProfile() {
               <li className="nav__item">
                 <Link href="/Profile">
                   <a className="nav__link active-link">
-                    <i className="bx bx-user nav__icon"></i>
+                    <i className="bx bx-profile nav__icon"></i>
                     <span className="nav__item">Profile</span>
                   </a>
                 </Link>
@@ -73,8 +250,8 @@ function EditProfile() {
                         type="file"
                         className="form-control"
                         placeholder="choose file"
-                        name="file"
-                        //   onChange={handleFile}
+                        name="file_profile"
+                        onChange={handleFilePP}
                         required
                       />
                     </div>
@@ -98,8 +275,8 @@ function EditProfile() {
                         type="file"
                         className="form-control"
                         placeholder="choose file"
-                        name="file"
-                        //   onChange={handleFile}
+                        name="file_banner"
+                        onChange={handleFileBanner}
                         required
                       />
                     </div>
@@ -126,7 +303,10 @@ function EditProfile() {
                         <div className="row">
                           <div className="col-lg-6">
                             <div className="form-group">
-                              <label className="form-control-label">
+                              <label
+                                className="form-control-label"
+                                forHtml="input-full-name"
+                              >
                                 Fullname
                               </label>
                               <input
@@ -135,14 +315,17 @@ function EditProfile() {
                                 placeholder="enter your name"
                                 name="txtFullName"
                                 required
-                                //   onChange={handleChangeEdit}
-                                //   value={userEdit.txtFullName}
+                                onChange={handleChangeEdit}
+                                value={profile.txtFullName}
                               />
                             </div>
                           </div>
                           <div className="col-lg-6">
                             <div className="form-group">
-                              <label className="form-control-label">
+                              <label
+                                className="form-control-label"
+                                forHtml="input-email"
+                              >
                                 Email Address
                               </label>
                               <input
@@ -150,9 +333,9 @@ function EditProfile() {
                                 className="form-control"
                                 placeholder="enter your email"
                                 name="txtEmail"
-                                //   required
-                                //   onChange={handleChangeEdit}
-                                //   value={userEdit.txtEmail}
+                                required
+                                onChange={handleChangeEdit}
+                                value={profile.txtEmail}
                               />
                             </div>
                           </div>
@@ -160,7 +343,10 @@ function EditProfile() {
                         <div className="row">
                           <div className="col-lg-6">
                             <div className="form-group">
-                              <label className="form-control-label">
+                              <label
+                                className="form-control-label"
+                                forHtml="input-Password"
+                              >
                                 Password
                               </label>
                               <input
@@ -169,22 +355,25 @@ function EditProfile() {
                                 placeholder="enter password"
                                 name="txtPassword"
                                 required
-                                //   onChange={handleChangeEdit}
-                                //   value={userEdit.txtPassword}
+                                onChange={handleChangeEdit}
+                                value={profile.txtPassword}
                               />
                             </div>
                           </div>
                           <div className="col-lg-6">
                             <div className="form-group">
-                              <label className="form-control-label">
+                              <label
+                                className="form-control-label"
+                                forHtml="input-tokenID"
+                              >
                                 Eth Address
                               </label>
                               <input
                                 type="input"
                                 className="form-control"
                                 name="ethAddress"
-                                //   onChange={handleChangeEdit}
-                                //   value={userEdit.ethAddress}
+                                onChange={handleChangeEdit}
+                                value={profile.ethAddress}
                                 disabled
                               />
                             </div>
@@ -200,53 +389,61 @@ function EditProfile() {
                         <div className="row">
                           <div className="col-lg-4">
                             <div className="form-group">
-                              <label className="form-control-label">
+                              <label
+                                className="form-control-label"
+                                forHtml="input-twitter"
+                              >
                                 Twitter
                               </label>
                               <input
                                 type="input"
                                 className="form-control"
                                 placeholder="@example"
-                                name="twitter"
-                                // onChange={handleChangeEdit}
-                                //   value={user.Twitter}
+                                name="Twitter"
+                                onChange={handleChangeEdit}
+                                value={profile.Twitter}
                               />
                             </div>
                           </div>
                           <div className="col-lg-4">
                             <div className="form-group">
-                              <label className="form-control-label">
+                              <label
+                                className="form-control-label"
+                                forHtml="input-instagram"
+                              >
                                 Instagram
                               </label>
                               <input
                                 type="input"
                                 className="form-control"
                                 placeholder="@example"
-                                name="instagram"
-                                // onChange={handleChangeEdit}
-                                //   value={user.Instagram}
+                                name="Instagram"
+                                onChange={handleChangeEdit}
+                                value={profile.Instagram}
                               />
                             </div>
                           </div>
                           <div className="col-lg-4">
                             <div className="form-group">
-                              <label className="form-control-label">
+                              <label
+                                className="form-control-label"
+                                forHtml="input-website"
+                              >
                                 Website
                               </label>
                               <input
                                 type="input"
                                 className="form-control"
-                                placeholder="www@example.id"
-                                name="website"
-                                // onChange={handleChangeEdit}
-                                //   value={user.Website}
+                                placeholder="www.example.id"
+                                name="Website"
+                                onChange={handleChangeEdit}
+                                value={profile.Website}
                               />
                             </div>
                           </div>
                         </div>
                       </div>
-                      {/* <hr className="my-4" />
-                <h6 className="heading-small text-muted mb-4">About me</h6> */}
+
                       <div className="pl-lg-4">
                         <div className="form-group">
                           <label className="form-control-label">About me</label>
@@ -254,21 +451,34 @@ function EditProfile() {
                             type="input"
                             className="form-control"
                             placeholder="write about you"
-                            name="bio"
+                            name="Bio"
                             required
-                            // onChange={handleChangeEdit}
-                            //   value={userEdit.Bio}
+                            onChange={handleChangeEdit}
+                            value={profile.Bio}
                           />
                         </div>
                       </div>
 
-                      {/* <Button
-                      //   onClick={handleUpdate}
-                      color="primary"
-                      type="button"
-                    >
-                      Save changes
-                    </Button> */}
+                      <div className="row">
+                        <div className="col-lg-6 text-end">
+                          <div className="d-flex justify-content-between">
+                            <Link href={{ pathname: "/Profile" }}>
+                              <a className="mt-4 text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 dark:bg-[#9b6b43] dark:hover:bg-[#744c24] dark:focus:ring-blue-800 inline-flex ">
+                                Cancel
+                              </a>
+                            </Link>
+                          </div>
+                        </div>
+                        <div className="col-lg-6 text-end">
+                          <button
+                            onClick={handleUpdate}
+                            className="mt-4 text-white bg-[#9b6b43] hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 dark:bg-[#9b6b43] dark:hover:bg-[#744c24] dark:focus:ring-blue-800 inline-flex "
+                            type="button"
+                          >
+                            Save changes
+                          </button>
+                        </div>
+                      </div>
                     </form>
                   </div>
                 </div>
@@ -279,5 +489,5 @@ function EditProfile() {
       </main>
     </div>
   );
-}
+};
 export default EditProfile;

@@ -6,6 +6,7 @@ import { getLeaderboards } from "../../redux/action/leaderboardAction";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import LeaderboardTable from "../../components/LeaderboardComponent/LeaderboardTable";
+import Header from "../../components/Header";
 // import "../js/main.js";
 
 export default function Home() {
@@ -29,46 +30,7 @@ export default function Home() {
         />
       </Head>
 
-      <header className="header" id="header">
-        <nav className="nav container">
-          <a href="https://nextjs.org">Batiqun</a>
-          {/* <input
-            id="quick_search"
-            className="xs-hide style-2"
-            name="quick_search"
-            placeholder="search item here..."
-            type="text"
-          /> */}
-          <div className="nav__menu" id="nav-menu">
-            <ul className="nav__list">
-              <li className="nav__item">
-                <Link href="/">
-                  <a className="nav__link">
-                    <i className="bx bx-home-alt nav__icon"></i>
-                    <span className="nav__name">Home</span>
-                  </a>
-                </Link>
-              </li>
-              <li className="nav__item">
-                <Link href="/Leaderboards">
-                  <a className="nav__link active-link">
-                    <i className="bx bx-bar-chart-alt-2 nav__icon"></i>
-                    <span className="nav__item">Leaderboards</span>
-                  </a>
-                </Link>
-              </li>
-              <li className="nav__item">
-                <Link href="/Profile">
-                  <a className="nav__link">
-                    <i className="bx bx-user nav__icon"></i>
-                    <span className="nav__item">Profile</span>
-                  </a>
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </header>
+      <Header />
 
       <main>
         <div className="overflow-x-auto">

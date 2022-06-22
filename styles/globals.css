@@ -18,8 +18,8 @@
   --text-color: hsl(var(--hue), 8%, 35%);
   --body-color: #f8f9fa !important;
   --container-color: #FFF;
-  --secondary-color: #ED406C;
-  --secondary-color-2: #8364E2;
+  --secondary-color: #744c24;
+  --secondary-color-2: #F6C6EA;
   --secondary-color-rgb: 237, 64, 108;
   --secondary-color-rgb-2: 131, 100, 226;
   --blue-jeans: hsl(202, 100%, 50%);
@@ -434,7 +434,7 @@ color: black;
 
 .card-head .buy-btn {
   position: absolute;
-  background: var(--blue-jeans);
+  background: var(--first-color);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0);
@@ -447,7 +447,7 @@ color: black;
 }
 
 .card-head .buy-btn:hover {
-  background: var(--raisin-black);
+  background: var(--secondary-color);
 }
 
 .card:hover .buy-btn {
@@ -465,22 +465,22 @@ color: black;
 }
 
 .card-body .product-name a{
-  color: var(--white);
+  color: var(--first-color);
   transition: all 0.25s ease;
 }
 
 .card-body .product-name a:hover{
-  color: var(--blue-jeans);
+  color: var(--secondary-color);
 }
 
 .card-body .deskripsi-product {
-  color: var(--silver-chalice);
+  color: var(--space-cadet);
   font-size: 15px;
   margin-bottom: 15px;
 }
 
 .card-body .current-price {
-  color: var(--blue-jeans);
+  color: var(--first-color);
   font-size: 12px;
   font-weight: 600;
 }
@@ -495,7 +495,7 @@ color: black;
 }
 
 .wrapper-flex .react:hover{
-  background: var(--blue-jeans);
+  background: var(--secondary-color-2);
   color: var(--white);
 }
 
@@ -527,7 +527,7 @@ color: black;
 .items .card{
   min-width: 300px;
   height: 400px;
-  background: #ddd;
+  background: var(--white);
   margin: 10px;
 }
 
@@ -716,9 +716,13 @@ header:not(.header-light) #quick_search::-webkit-input-placeholder {
 /*=============== MEDIA QUERIES ===============*/
 /* For small devices */
 /* Remove if you choose, the minimalist design */
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 390px) {
   .nav__name {
     display: none;
+  }
+
+  .section-profil {
+    margin-bottom: 7rem;
   }
 }
 
@@ -727,6 +731,11 @@ header:not(.header-light) #quick_search::-webkit-input-placeholder {
   .nav__list {
     justify-content: center;
     column-gap: 3rem;
+  }
+
+  .collected .padding-card {
+    padding-left: 0px;
+    padding-right: 0px;
   }
 }
 

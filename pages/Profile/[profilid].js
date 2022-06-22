@@ -8,11 +8,11 @@ import { requireLogin } from "../../AuthVerification/requireLogin";
 import { useMoralis } from "react-moralis";
 import { getProfile, getUsers } from "../../redux/action/profileAction";
 import ProductCard from "../../components/Product-Components/ProductCard";
+import Header from "../../components/Header";
 import Cookies from "js-cookie";
 import axios from "axios";
 import { useRouter } from "next/router";
 import "../../GlobalVariable";
-import Header from "../../components/Header";
 // import "../js/main.js";
 //abcde
 
@@ -23,16 +23,16 @@ const style = {
   midRow: `w-full flex justify-center text-black`,
   endRow: `w-full flex justify-end text-black`,
   profileImg: `w-40 h-40 object-cover rounded-full border-2 border-[#202225] mt-[-4rem]`,
-  socialIconsContainer: `flex text-xl mb-[-2rem]`,
-  socialIconsWrapper: `w-24 lg:w-40 -mt-16`,
-  socialIconsContent: `flex container justify-around sm:text-sm lg:text-[1.4rem] border-2 rounded-xl px-2`,
+  socialIconsContainer: `flex text-3xl mb-[-2rem]`,
+  socialIconsWrapper: `w-40`,
+  socialIconsContent: `flex container justify-around text-[1.4rem] border-2 rounded-lg px-2`,
   socialIcon: `my-2 cursor-pointer`,
   divider: `border-r-2`,
-  title: `text-2xl lg:text-5xl font-bold mb-4`,
+  title: `text-5xl font-bold mb-4`,
   createdBy: `text-sm font-light mb-4`,
   statsContainer: `w-[78vw] flex justify-between py-4 border border-[#151b22] rounded-xl mb-4`,
   collectionStat: `w-1/4`,
-  statValue: `text-3xl sm:text-sm xs:text-xs lg:text-3xl font-bold w-full flex items-center justify-center`,
+  statValue: `text-3xl font-bold w-full flex items-center justify-center`,
   ethLogo: `h-6 mr-2`,
   statName: `text-lg w-full text-center mt-1`,
   description: `text-[#8a939b] text-xl w-max-1/4 flex-wrap mt-4`,
@@ -45,7 +45,7 @@ export default function Home() {
   const { logout } = useMoralis();
 
   const router = useRouter();
-  const { isCreated, isFav, Page } = router.query;
+  const { profilid, isCreated, isFav, Page } = router.query;
 
   var created = false;
   var favorite = false;
@@ -70,7 +70,7 @@ export default function Home() {
   useEffect(() => {
     dispatch(
       getProfile(
-        Cookies.get("ethAddress"),
+        profilid,
         Cookies.get("ethAddress"),
         Cookies.get("UserData"),
         created,
@@ -122,7 +122,11 @@ export default function Home() {
             </button>
           </div> */}
         <div className={style.bannerImageContainer}>
-          <img className={style.bannerImage} src="bg.jpg" alt="banner" />
+          <img
+            className={style.bannerImage}
+            src={global.DataUrl + profile.Profile_Baner}
+            alt="banner"
+          />
         </div>
         <div className={style.infoContainer}>
           <div className={style.midRow}>
@@ -143,25 +147,6 @@ export default function Home() {
                   <div className={style.socialIcon}>
                     <i className="fa-brands fa-twitter"></i>
                   </div>
-                  <div className={style.divider} />
-                  <a
-                    onClick={() => {
-                      router.push({
-                        pathname: "./Profile/EditProfile",
-                      });
-                    }}
-                    href="javascript:;"
-                  >
-                    <div className={style.socialIcon}>
-                      <i className="fa-solid fa-gear"></i>
-                    </div>
-                  </a>
-                  <div className={style.divider} />
-                  <a onClick={logoff}>
-                    <div className={style.socialIcon}>
-                      <i className="fa-solid fa-right-from-bracket"></i>
-                    </div>
-                  </a>
                 </div>
               </div>
             </div>
@@ -190,9 +175,9 @@ export default function Home() {
               <div className={style.collectionStat}>
                 <div className={style.statValue}>
                   <i className="fa-brands fa-ethereum"></i>
-                  {profile.TotalFavorite}
+                  &nbsp;4241
                 </div>
-                <div className={style.statName}>favorit</div>
+                <div className={style.statName}>floor price</div>
               </div>
             </div>
           </div>
@@ -238,7 +223,6 @@ export default function Home() {
                       ProductData={profile.Products}
                       loading={loading}
                       error={error}
-                      isFav={isFav}
                     />
                   </div>
                 </div>

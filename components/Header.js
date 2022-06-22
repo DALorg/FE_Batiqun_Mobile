@@ -1,9 +1,21 @@
 import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/dist/client/router";
+import { useEffect, useState } from "react";
 
 const Header = () => {
+  const [SearchInput, setSearchInput] = useState("");
   const router = useRouter();
+  const handleChangeEdit = (e) => {
+    setSearchInput(e.target.value);
+  };
+  function onKeyDown(event) {
+    const isEnter = event.key === "Enter";
+
+    if (isEnter) {
+      window.location.assign("/Products?Search=" + SearchInput);
+    }
+  }
   return (
     <header className="header" id="header">
       <nav className="nav container">
@@ -20,10 +32,14 @@ const Header = () => {
             type="text"
             className="border border-gray-300 bg-white h-10 pl-2 pr-8 rounded-lg text-sm focus:outline-none"
             placeholder="Cari NFT disini..."
+            onChange={handleChangeEdit}
+            onKeyDown={onKeyDown}
           />
-          <button type="submit" className="absolute right-0 top-0 mt-2 mr-3">
-            <i className="fa-solid fa-magnifying-glass"></i>
-          </button>
+          <Link href={"/Products?Search=" + SearchInput}>
+            <button type="submit" className="absolute right-0 top-0 mt-2 mr-3">
+              <i className="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </Link>
         </div>
         <div className="nav__menu" id="nav-menu">
           <ul className="nav__list">
@@ -31,13 +47,13 @@ const Header = () => {
               <Link href="/">
                 <a
                   className={
-                    router.pathname.includes("/")
+                    router.pathname == "/"
                       ? "nav__link active-link"
                       : "nav__link"
                   }
                 >
                   <i className="bx bx-home-alt nav__icon"></i>
-                  <span className="nav__name">Home</span>
+                  <span className="nav__item">Home</span>
                 </a>
               </Link>
             </li>

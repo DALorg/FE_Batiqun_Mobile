@@ -6,7 +6,7 @@ import { useMoralis } from "react-moralis";
 import Cookies from "js-cookie";
 import { LoginUser } from "../redux/action/loginAction";
 import "../GlobalVariable";
-import Moralis from 'moralis';
+import Moralis from "moralis";
 import Swal from "sweetalert2";
 
 export default function Login() {
@@ -59,17 +59,7 @@ export default function Login() {
 
   const metamaskAuth = async () => {
     try {
-      await Moralis.authenticate({ 
-        provider: "walletconnect", 
-        mobileLinks: [
-          "rainbow",
-          "metamask",
-          "argent",
-          "trust",
-          "imtoken",
-          "pillar",
-        ] 
-    });
+      await Moralis.authenticate({});
     } catch (error) {
       console.log(error);
     }

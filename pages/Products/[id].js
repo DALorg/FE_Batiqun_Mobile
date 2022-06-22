@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 import { getById } from "../../redux/action/productAction";
 import styled from "styled-components";
 import React from "react";
@@ -14,27 +14,26 @@ import Header from "../../components/Header";
 import "../../components/ApiComponent/GlobalVariable";
 import BuyButton from "../../components/ProductDetail/BuyButton";
 
-
 const ProductDetail = () => {
   const dispatch = useDispatch();
   const allProductsData = useSelector((state) => state.Products);
-  const {loading,error,product} = allProductsData;
+  const { loading, error, product } = allProductsData;
 
   const router = useRouter();
-  const {id}  = router.query;
+  const { id } = router.query;
 
   // LOAD DATA
   useEffect(() => {
     if (router.isReady) {
       // Code using query
       dispatch(getById(id));
-     }
+    }
   }, [id]);
 
   return (
     //
     <article className="AssetEl">
-    <Header />
+      <Header />
       <div className="SectionContainer">
         <div className="LeftSection">
           <div className="ImageE1">
@@ -51,9 +50,7 @@ const ProductDetail = () => {
           <span>
             <h1 className="Title">{product.Nama_Product}</h1>
           </span>
-          <p className="Des">
-          {product.Description}
-          </p>
+          <p className="Des">{product.Description}</p>
           <div className="AuthorContainer justify-between">
             <div className="">
               <label className="CreatorLabel font-extrabold">Pembuat</label>
@@ -61,7 +58,20 @@ const ProductDetail = () => {
                 <Image src="/logo.png" width="50" height="50" />
               </div>
               <span>
-                <span>{product.mintedAddress?.substring(0, 7) + "..." + product.mintedAddress?.substring(product.mintedAddress?.length - 7)}</span>
+                <span>
+                  <Link
+                    href={{
+                      pathname: "/Profile/[profilid]",
+                      query: { profilid: product.ethAddress },
+                    }}
+                  >
+                    {product.mintedAddress?.substring(0, 7) +
+                      "..." +
+                      product.mintedAddress?.substring(
+                        product.mintedAddress?.length - 7
+                      )}
+                  </Link>
+                </span>
               </span>
             </div>
             <div>
@@ -72,20 +82,35 @@ const ProductDetail = () => {
                 <Image src="/logo.png" width="50" height="50" />
               </div>
               <span>
-                <span>{product.ethAddress?.substring(0, 7) + "..." + product.ethAddress?.substring(product.ethAddress?.length - 7)}</span>
+                <span>
+                  <Link
+                    href={{
+                      pathname: "/Profile/[profilid]",
+                      query: { profilid: product.ethAddress },
+                    }}
+                  >
+                    {product.ethAddress?.substring(0, 7) +
+                      "..." +
+                      product.ethAddress?.substring(
+                        product.ethAddress?.length - 7
+                      )}
+                  </Link>
+                </span>
               </span>
             </div>
           </div>
-          {product.TokenID != null && product.bitMintedStatus == true && product.txtStatus == "Selling"  ? 
-          <BuyButton product={product} />
-          : null}
+          {product.TokenID != null &&
+          product.bitMintedStatus == true &&
+          product.txtStatus == "Selling" ? (
+            <BuyButton product={product} />
+          ) : null}
         </div>
       </div>
       <div className="itemActivity">
-        <ItemActivity PA={product}/>
+        <ItemActivity PA={product} />
       </div>
     </article>
   );
-}
+};
 
 export default ProductDetail;

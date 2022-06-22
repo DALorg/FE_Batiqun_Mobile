@@ -2,12 +2,12 @@ import {
   GET_PRODUCTS,
   GET_BY_ID_PRODUCTS,
   PRODUCTS_ERROR,
-  EDIT_PRODUCTS
+  EDIT_PRODUCTS,
 } from "../reducers/types";
 import axios from "axios";
 import Cookies from "js-cookie";
 
-export const getProducts = (Page, Length) => async (dispatch) => {
+export const getProducts = (Page, Length, Search) => async (dispatch) => {
   try {
     const config = {
       headers: { Authorization: `Bearer ${Cookies.get("UserData")}` },
@@ -18,7 +18,7 @@ export const getProducts = (Page, Length) => async (dispatch) => {
         objRequestData: {
           intPage: Page,
           intLength: Length,
-          txtSearch: "",
+          txtSearch: Search,
           bitAscending: true,
         },
       },
@@ -43,12 +43,15 @@ export const getById = (ProductId) => async (dispatch) => {
     const config = {
       headers: { Authorization: `Bearer ${Cookies.get("UserData")}` },
     };
-    const res = await axios.post(`https://batiqunapi.azurewebsites.net/api/product/get`, 
-    {
-      objRequestData: {
-        ProductId: ProductId
-      }
-    },config);
+    const res = await axios.post(
+      `https://batiqunapi.azurewebsites.net/api/product/get`,
+      {
+        objRequestData: {
+          ProductId: ProductId,
+        },
+      },
+      config
+    );
     dispatch({
       type: GET_BY_ID_PRODUCTS,
       payload: res.data.objData,
@@ -66,14 +69,18 @@ export const getById = (ProductId) => async (dispatch) => {
 export const BuyProduct = (objRequestData, token) => async (dispatch) => {
   try {
     var testResp = {
-        objRequestData
+      objRequestData,
     };
     const config = {
-      headers: { Authorization: `Bearer ${token}` }
+      headers: { Authorization: `Bearer ${token}` },
     };
     debugger;
     await axios
-      .post(`https://batiqunapi.azurewebsites.net/api/product/BuyProduct`, testResp, config)
+      .post(
+        `https://batiqunapi.azurewebsites.net/api/product/BuyProduct`,
+        testResp,
+        config
+      )
       .then((response) => {
         dispatch({
           type: EDIT_PRODUCTS,
