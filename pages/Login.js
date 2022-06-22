@@ -8,8 +8,31 @@ import { LoginUser } from "../redux/action/loginAction";
 import "../GlobalVariable";
 import Moralis from "moralis";
 import Swal from "sweetalert2";
+import Web3 from "web3";
+import Web3Modal from "web3modal";
+import WalletConnectProvider from "@walletconnect/web3-provider";
 
 export default function Login() {
+  const [Account, setAccount] = useState(null);
+  const providerOptions = {
+    walletconnect:{
+      package: WalletConnectProvider,
+      options: {
+        infuraId: '74d4216e67eb4ea3a3e73cc3bd745d1c'
+      }
+    }
+    /* See Provider Options Section */
+  };
+  
+  if(typeof window !== "undefined"){
+    const web3Modal = new Web3Modal({
+      network: "rinkeby",
+      theme: "dark",
+      cacheProvider: true,
+      providerOptions: providerOptions // required
+    });
+  }
+
   function deleteAllCookies() {
     var cookies = document.cookie.split(";");
 
@@ -57,14 +80,48 @@ export default function Login() {
 
   const { isAuthenticated, user, authenticate } = useMoralis();
 
-  const metamaskAuth = async () => {
-    try {
-      await Moralis.authenticate({});
-    } catch (error) {
-      console.log(error);
+  const login = async () => {
+    try{
+      const provider = await web3Modal.connect();
+      const web3 = new Web3(provider);
+      var accounts = await web3.eth.getAccounts();
+      setAccount(accounts[0]);
+    }catch{
+      Swal.fire(
+        "Oops...",
+        "Something went wrong!",
+        "error"
+    )
     }
-  };
-  if (!isAuthenticated) {
+
+  }
+
+  const fetch = async () => {
+    await axios({
+      url: global.apiurl + "api/user/LoginUser",
+      method: "POST",
+      data: {
+        objRequestData: {
+          ethAddress: Account,
+        },
+      },
+    }).then((res) => {
+      setCookie("UserData", res.data.objData.access_token, 3);
+      setCookie("UserRole", res.data.objData.encRole[0].RoleName, 3);
+      axios({
+        url:
+          global.apiurl + "api/user/GetUserKTPStatus/" + Account,
+        method: "GET",
+      }).then((result) => {
+        setCookie("UsrKTPstatus", result.data.bitSuccess, 3);
+        checkCookie(Account);
+      });
+    });
+  }
+
+  console.log(Account);
+
+  if (!Account) {
     if (
       Cookies.get("UsrKTPstatus") != null ||
       Cookies.get("ethAddress") != null ||
@@ -92,7 +149,7 @@ export default function Login() {
                       </div>
                       <div className="justify-center mb-4">
                         <button
-                          onClick={metamaskAuth}
+                          onClick={login}
                           type="button"
                           className="px-4 py-3 bg-yellow-800 rounded-md text-white outline-none focus:ring-4 shadow-lg transform active:scale-75 transition-transform flex"
                         >
@@ -110,26 +167,7 @@ export default function Login() {
       </div>
     );
   } else {
-    axios({
-      url: global.apiurl + "api/user/LoginUser",
-      method: "POST",
-      data: {
-        objRequestData: {
-          ethAddress: user.get("ethAddress"),
-        },
-      },
-    }).then((res) => {
-      setCookie("UserData", res.data.objData.access_token, 3);
-      setCookie("UserRole", res.data.objData.encRole[0].RoleName, 3);
-      axios({
-        url:
-          global.apiurl + "api/user/GetUserKTPStatus/" + user.get("ethAddress"),
-        method: "GET",
-      }).then((result) => {
-        setCookie("UsrKTPstatus", result.data.bitSuccess, 3);
-        checkCookie(user.get("ethAddress"));
-      });
-    });
+    fetch();
     let timerInterval;
     return Swal.fire({
       title: "Fetching Some Cookies!",
