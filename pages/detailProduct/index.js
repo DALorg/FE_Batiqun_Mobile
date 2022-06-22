@@ -6,7 +6,6 @@ import Purchase from "../../components/ProductDetail/Purchase";
 import ItemActivity from "../../components/ProductDetail/ItemActivity";
 import Image from "next/image";
 import Link from "next/link";
-import Devices from "./Utility";
 
 const style = {
   wrapper: `flex flex-col items-center text-[#e5e8eb]`,
