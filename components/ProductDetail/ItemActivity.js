@@ -5,7 +5,7 @@ import { dummyEvents } from "../../static/dummyEvents";
 import EventItem from "./itemActivity/EventItem";
 
 const style = {
-  wrapper: `w-full mt-8 border border-[#151b22] rounded-xl bg-[#eaeaeb] overflow-hidden`,
+  wrapper: `w-full mt-8 mb-16 border border-[#151b22] rounded-xl bg-[#eaeaeb] overflow-hidden`,
   title: `bg-[#eaeaeb] text-slate-900 px-6 py-4 flex items-center`,
   titleLeft: `flex-1 flex items-center text-xl font-bold`,
   titleIcon: `text-3xl mr-2`,
