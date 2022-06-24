@@ -9,7 +9,6 @@ import KaryaCard from "../components/HomePage-Components/KaryaCard";
 import UserLists from "../components/HomePage-Components/UserList";
 import Header from "../components/Header";
 import { useRouter } from "next/dist/client/router";
-//
 
 export default function Home() {
   const dispatch = useDispatch();
