@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import { IoMdWallet } from "react-icons/io";
 import toast, { Toaster } from "react-hot-toast";
 import { ethers } from "ethers";
+import { useState } from "react";
 
 const web3 = new Web3(Web3.givenProvider)
 
@@ -19,6 +20,7 @@ const style = {
 
 const BuyButton = ({ product }) => {
 
+    const [txs, setTxs] = useState({});
     const dispatch = useDispatch();
     const currentUser = Cookies.get("ethAddress");
 
@@ -45,9 +47,8 @@ const BuyButton = ({ product }) => {
             clearInterval(timerInterval)
           }
         })
-        await startPayment().then(function(result) {
-          console.log(result);
-          dispatch(BuyProduct({
+        await startPayment().then(async function(result) {
+          await dispatch(BuyProduct({
             Product_ActivityID: "7Tk$K9N2nJIPW1BkBiCjpA__",
             ProductId: product.encProductId,
             ethAddress_To: product.ethAddress,
@@ -63,12 +64,15 @@ const BuyButton = ({ product }) => {
         "Your have bought this Product!",
         "success"
       )
-    }).catch((e) =>         
+    }).catch(function(error) {      
+      console.log(error);
       Swal.fire(
         "Oops...",
         "Something went wrong!",
         "error"
-    ));
+    )
+      }
+    );
       } catch (error){
         console.log(error)
       }
@@ -87,6 +91,7 @@ const BuyButton = ({ product }) => {
           to: randomElement,
           value: String((product.Harga * 1000000000000000000) + 500000000000000)
         });
+        return tx;
       }catch{
 
       }
