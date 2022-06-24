@@ -173,20 +173,20 @@ export default function Home() {
             <div className={style.statsContainer}>
               <div className={style.collectionStat}>
                 <div className={style.statValue}>{profile.TotalCreated}</div>
-                <div className={style.statName}>created</div>
+                <div className={style.statName}>Dibuat</div>
               </div>
               <div className={style.collectionStat}>
                 <div className={style.statValue}>
                   {profile.TotalCollections}
                 </div>
-                <div className={style.statName}>owned</div>
+                <div className={style.statName}>Dimiliki</div>
               </div>
               <div className={style.collectionStat}>
                 <div className={style.statValue}>
                   <i className="fa-brands fa-ethereum"></i>
                   {profile.TotalFavorite}
                 </div>
-                <div className={style.statName}>favorit</div>
+                <div className={style.statName}>Favorit</div>
               </div>
             </div>
           </div>

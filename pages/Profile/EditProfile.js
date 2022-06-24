@@ -9,6 +9,7 @@ import Cookies from "js-cookie";
 import Swal from "sweetalert2";
 import axios from "axios";
 import "../../GlobalVariable";
+import Header from "../../components/Header";
 
 const EditProfile = () => {
   const dispatch = useDispatch();
@@ -191,40 +192,7 @@ const EditProfile = () => {
           href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
         />
       </Head>
-      <header className="header" id="header">
-        <nav className="nav container">
-          <a href="https://nextjs.org">Batiqun</a>
-          <div className="nav__menu" id="nav-menu">
-            <ul className="nav__list">
-              <li className="nav__item">
-                <Link href="/">
-                  <a className="nav__link">
-                    <i className="bx bx-home-alt nav__icon"></i>
-                    <span className="nav__name">Home</span>
-                  </a>
-                </Link>
-              </li>
-              <li className="nav__item">
-                <Link href="/Leaderboards">
-                  <a className="nav__link">
-                    <i className="bx bx-bar-chart-alt-2 nav__icon"></i>
-                    <span className="nav__item">Leaderboards</span>
-                  </a>
-                </Link>
-              </li>
-              <li className="nav__item">
-                <Link href="/Profile">
-                  <a className="nav__link active-link">
-                    <i className="bx bx-profile nav__icon"></i>
-                    <span className="nav__item">Profile</span>
-                  </a>
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </header>
-
+      <Header />
       <main>
         <section className="pt-16 pb-16">
           <div className="container-fluid py-1">
@@ -237,7 +205,7 @@ const EditProfile = () => {
                     </div>
                     <img
                       className="rounded-full h-40 w-40 object-center"
-                      src="../../profile.jpg"
+                      src="../../user.png"
                       alt="Sunset in the mountains"
                     />
                   </div>
@@ -259,10 +227,12 @@ const EditProfile = () => {
                 </div>
                 <div className="max-w-screen-lg rounded mt-3 overflow-hidden shadow-sm bg-[#fff]">
                   <div className="px-6 py-4 grid place-content-center">
-                    <div className="font-bold text-xl mb-2 ">Ubah Header</div>
+                    <div className="font-bold text-xl mb-2 text-center">
+                      Ubah Header
+                    </div>
                     <img
-                      className="rounded-full h-40 w-40 object-center"
-                      src="../../profile.jpg"
+                      className="rounded-4 h-40 w-80 object-center"
+                      src="../../bg.jpg"
                       alt="Sunset in the mountains"
                     />
                   </div>

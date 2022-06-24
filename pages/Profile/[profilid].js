@@ -68,17 +68,19 @@ export default function Home() {
 
   // LOAD DATA
   useEffect(() => {
-    dispatch(
-      getProfile(
-        profilid,
-        Cookies.get("ethAddress"),
-        Cookies.get("UserData"),
-        created,
-        favorite,
-        Pagess,
-        TotalDisplayed
-      )
-    );
+    if (router.isReady) {
+      dispatch(
+        getProfile(
+          profilid,
+          Cookies.get("ethAddress"),
+          Cookies.get("UserData"),
+          created,
+          favorite,
+          Pagess,
+          TotalDisplayed
+        )
+      );
+    }
   }, []);
 
   function deleteAllCookies() {
@@ -122,7 +124,7 @@ export default function Home() {
             </button>
           </div> */}
         <div className={style.bannerImageContainer}>
-          {profile.Profile_Baner ? (
+          {profile?.Profile_Baner ? (
             <img
               className={style.bannerImage}
               src={global.DataUrl + profile.Profile_Baner}
@@ -136,7 +138,7 @@ export default function Home() {
           <div className={style.midRow}>
             <img
               className={style.profileImg}
-              src={global.DataUrl + profile.Profile_Image}
+              src={global.DataUrl + profile?.Profile_Image}
               alt="profile image"
             />
           </div>
@@ -156,32 +158,32 @@ export default function Home() {
             </div>
           </div>
           <div className={style.midRow}>
-            <div className={style.title}>{profile.txtFullName}</div>
+            <div className={style.title}>{profile?.txtFullName}</div>
           </div>
           <div className={style.midRow}>
             <div className={style.createdBy}>
               <i className="fa-brands fa-ethereum" />
-              &nbsp;{profile.ethAddress}
+              &nbsp;{profile?.ethAddress}
             </div>
           </div>
           <div className={style.midRow}>
             <div className={style.statsContainer}>
               <div className={style.collectionStat}>
-                <div className={style.statValue}>{profile.TotalCreated}</div>
-                <div className={style.statName}>created</div>
+                <div className={style.statValue}>{profile?.TotalCreated}</div>
+                <div className={style.statName}>Dibuat</div>
               </div>
               <div className={style.collectionStat}>
                 <div className={style.statValue}>
-                  {profile.TotalCollections}
+                  {profile?.TotalCollections}
                 </div>
-                <div className={style.statName}>owned</div>
+                <div className={style.statName}>Dimiliki</div>
               </div>
               <div className={style.collectionStat}>
                 <div className={style.statValue}>
                   <i className="fa-brands fa-ethereum"></i>
-                  &nbsp;4241
+                  {profile?.TotalFavorite}
                 </div>
-                <div className={style.statName}>floor price</div>
+                <div className={style.statName}>Favorit</div>
               </div>
             </div>
           </div>
@@ -224,7 +226,7 @@ export default function Home() {
                 <div id="collected" className="p-8">
                   <div className="row padding-card">
                     <ProductCard
-                      ProductData={profile.Products}
+                      ProductData={profile?.Products}
                       loading={loading}
                       error={error}
                     />
