@@ -155,6 +155,7 @@ a {
 .ImageE1 {
   border-radius: 30px;
   border: 1px solid rgb(229, 232, 235);
+  overflow: visible;
 }
 
 .RightSection {
