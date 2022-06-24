@@ -11,7 +11,7 @@ import ItemActivity from "../../components/ProductDetail/ItemActivity";
 import Image from "next/image";
 import Link from "next/link";
 import Header from "../../components/Header";
-import "../../components/ApiComponent/GlobalVariable";
+import "../../GlobalVariable";
 import BuyButton from "../../components/ProductDetail/BuyButton";
 import Head from "next/head";
 
@@ -48,7 +48,7 @@ const ProductDetail = () => {
         <div className="LeftSection">
           <div className="ImageE1">
             <Image
-              src={global.apiurl + "Data/" + product.Product_image}
+              src={global.DataUrl + product.Product_image}
               className="object-contain"
               layout="responsive"
               width="500px"

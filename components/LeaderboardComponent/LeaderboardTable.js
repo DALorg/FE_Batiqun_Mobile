@@ -3,7 +3,7 @@ import "../../GlobalVariable";
 const LeaderboardTable = ({ LeaderboardData, loading, error }) => {
   return (
     <>
-      <table className="min-w-max w-full max-w-screen table-fixed overflow-x-auto">
+      <table className="min-w-max w-full max-w-screen table-fixed">
         <thead>
           <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
             <th className="py-3 px-6 text-left">Nama</th>
@@ -25,7 +25,7 @@ const LeaderboardTable = ({ LeaderboardData, loading, error }) => {
         ) : (
           LeaderboardData.map((leaderboards) => (
             <>
-              <tbody className="text-gray-600 text-sm font-light">
+              <tbody className="text-gray-600 text-sm font-light overflow-x-scroll">
                 <tr className="border-b border-gray-200 hover:bg-gray-100">
                   <td className="py-3 px-4 text-left">
                     <div className="flex items-center">

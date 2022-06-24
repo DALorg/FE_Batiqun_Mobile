@@ -122,11 +122,15 @@ export default function Home() {
             </button>
           </div> */}
         <div className={style.bannerImageContainer}>
-          <img
-            className={style.bannerImage}
-            src={global.DataUrl + profile.Profile_Baner}
-            alt="banner"
-          />
+          {profile.Profile_Baner ? (
+            <img
+              className={style.bannerImage}
+              src={global.DataUrl + profile.Profile_Baner}
+              alt="banner"
+            />
+          ) : (
+            <img className={style.bannerImage} src="bg.jpg" alt="banner" />
+          )}
         </div>
         <div className={style.infoContainer}>
           <div className={style.midRow}>
@@ -234,9 +238,3 @@ export default function Home() {
     </div>
   );
 }
-export const getServerSideProps = requireLogin((context) => {
-  const { req, res } = context;
-  const token = req.cookies.ethAddress;
-  console.log(token);
-  return { props: {} };
-});

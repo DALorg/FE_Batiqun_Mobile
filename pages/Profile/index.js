@@ -111,18 +111,12 @@ export default function Home() {
       <Header />
 
       <main>
-        {/* <section className="container section section__height" id="home"> */}
-        {/* <div className="header-title">
-            <h3>Connect your wallet.</h3>
-          </div>
-          <div className="text-center">
-            <button type="button" className="btnConnect">
-              <img src="image5.png" />
-              Connect with Metamask
-            </button>
-          </div> */}
         <div className={style.bannerImageContainer}>
-          <img className={style.bannerImage} src="bg.jpg" alt="banner" />
+          <img
+            className={style.bannerImage}
+            src={global.DataUrl + profile.Profile_Baner}
+            alt="banner"
+          />
         </div>
         <div className={style.infoContainer}>
           <div className={style.midRow}>

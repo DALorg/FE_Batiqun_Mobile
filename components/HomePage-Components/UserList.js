@@ -7,7 +7,10 @@ const UserLists = ({ UserData, loading, error }) => {
   console.log(UserData);
   return (
     <>
-      <section className="container section section-profile" id="leaderboards">
+      <section
+        className="container section section-profile pb-16"
+        id="leaderboards"
+      >
         <h2 className="section__title">Pengguna</h2>
         <div className="items">
           {loading ? (
@@ -36,7 +39,7 @@ const UserLists = ({ UserData, loading, error }) => {
                         />
                       ) : (
                         <img
-                          src="/vercel.svg"
+                          src={global.icon}
                           alt=""
                           width="300"
                           height="250"
