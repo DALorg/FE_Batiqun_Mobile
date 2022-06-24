@@ -49,10 +49,10 @@ const ProductDetail = () => {
           <div className="ImageE1">
             <Image
               src={global.DataUrl + product.Product_image}
-              className="object-contain"
-              layout="intrinsic"
-              width="500px"
-              height="500px"
+              className="object-contain flex"
+              layout="responsive"
+              width="400px"
+              height="400px"
             />
           </div>
         </div>
