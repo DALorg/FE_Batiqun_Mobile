@@ -154,6 +154,7 @@ a {
 
 .ImageE1 {
   display: flex;
+  flex-direction: column;
   border-radius: 30px;
   border: 1px solid rgb(229, 232, 235);
 }
