@@ -48,7 +48,7 @@ const ProductDetail = () => {
         <div className="LeftSection">
           <div className="ImageE1">
             <Image
-              src="/profile.jpg"
+              src={global.DataUrl + product.Product_image}
               className="object-contain"
               layout="responsive"
               width="500px"
