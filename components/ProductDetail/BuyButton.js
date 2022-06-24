@@ -68,7 +68,7 @@ const BuyButton = ({ product }) => {
       console.log(error);
       Swal.fire(
         "Oops...",
-        "Something went wrong!",
+        error.toString(),
         "error"
     )
       }
