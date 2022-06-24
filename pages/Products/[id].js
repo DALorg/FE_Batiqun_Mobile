@@ -46,7 +46,7 @@ const ProductDetail = () => {
       <Header />
       <div className="SectionContainer">
         <div className="LeftSection">
-          <div className="ImageE1">
+          <div className="">
             <Image
               src={global.DataUrl + product.Product_image}
               className="object-contain flex"
