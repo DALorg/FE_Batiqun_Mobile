@@ -13,7 +13,7 @@ export const getProducts = (Page, Length, Search) => async (dispatch) => {
       headers: { Authorization: `Bearer ${Cookies.get("UserData")}` },
     };
     const res = await axios.post(
-      `https://batiqunapi.azurewebsites.net/api/Product/GetPaging`,
+      global.apiurl + `/api/Product/GetPaging`,
       {
         objRequestData: {
           intPage: Page,
