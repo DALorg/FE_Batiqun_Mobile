@@ -51,8 +51,8 @@ const ProductDetail = () => {
               src={global.DataUrl + product.Product_image}
               className="object-contain flex"
               layout="responsive"
-              width="400px"
-              height="400px"
+              width="300px"
+              height="300px"
             />
           </div>
         </div>
