@@ -1,5 +1,6 @@
 import { LOGIN_ADMIN, LOGIN_USERS, LOGIN_ERROR } from "../reducers/types";
 import axios from "axios";
+import "../../GlobalVariable"
 
 export const LoginAdmin = (id) => async (dispatch) => {
   try {

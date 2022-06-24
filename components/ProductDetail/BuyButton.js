@@ -8,6 +8,7 @@ import Web3 from "web3";
 import Swal from "sweetalert2";
 import { IoMdWallet } from "react-icons/io";
 import toast, { Toaster } from "react-hot-toast";
+import { ethers } from "ethers";
 
 const web3 = new Web3(Web3.givenProvider)
 
@@ -46,7 +47,7 @@ const BuyButton = ({ product }) => {
             clearInterval(timerInterval)
           }
         })
-        fetch().then(function(result) {
+        await startPayment().then(function(result) {
           console.log(result);
           dispatch(BuyProduct({
             Product_ActivityID: "7Tk$K9N2nJIPW1BkBiCjpA__",
@@ -80,6 +81,24 @@ const BuyButton = ({ product }) => {
       amount: String((product.Harga * 1000000000000000000) + 500000000000000),
       receiver: randomElement 
     })
+
+    const startPayment = async () => {
+      try{
+        if(!window.ethereum){
+
+        }
+        await window.ethereum.send("eth_requestAccounts");
+        const providers = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = providers.getSigner();
+        ethers.utils.getAddress(randomElement);
+        const tx = await signer.sendTransaction({
+          to: randomElement,
+          value: String((product.Harga * 1000000000000000000) + 500000000000000)
+        });
+      }catch{
+
+      }
+    }
 
   return (
     <div className="flex h-20 items-center rounded-lg border border-[#151c22] bg-[#eaeaeb] px-12 justify-center items-end">

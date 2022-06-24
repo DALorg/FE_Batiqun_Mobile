@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['batiqunapi.azurewebsites.net'],
+    domains: ['batiqunapimysql20220624114651.azurewebsites.net'],
   }
 };
 

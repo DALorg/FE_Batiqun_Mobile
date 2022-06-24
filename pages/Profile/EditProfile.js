@@ -87,7 +87,7 @@ const EditProfile = () => {
     formData.append("Banner", userEdit.file_banner);
 
     axios({
-      url: "https://batiqunapi.azurewebsites.net/api/user/uploadfile",
+      url: global.apiurl + "api/user/uploadfile",
       method: "POST",
       data: formData,
     }).then((res) => {
@@ -286,7 +286,7 @@ const EditProfile = () => {
                                 name="txtFullName"
                                 required
                                 onChange={handleChangeEdit}
-                                value={profile.txtFullName}
+                                defaultValue={profile.txtFullName}
                               />
                             </div>
                           </div>
@@ -305,7 +305,7 @@ const EditProfile = () => {
                                 name="txtEmail"
                                 required
                                 onChange={handleChangeEdit}
-                                value={profile.txtEmail}
+                                defaultValue={profile.txtEmail}
                               />
                             </div>
                           </div>
@@ -326,7 +326,7 @@ const EditProfile = () => {
                                 name="txtPassword"
                                 required
                                 onChange={handleChangeEdit}
-                                value={profile.txtPassword}
+                                defaultValue={profile.txtPassword}
                               />
                             </div>
                           </div>
@@ -343,7 +343,7 @@ const EditProfile = () => {
                                 className="form-control"
                                 name="ethAddress"
                                 onChange={handleChangeEdit}
-                                value={profile.ethAddress}
+                                defaultValue={profile.ethAddress}
                                 disabled
                               />
                             </div>
@@ -371,7 +371,7 @@ const EditProfile = () => {
                                 placeholder="@example"
                                 name="Twitter"
                                 onChange={handleChangeEdit}
-                                value={profile.Twitter}
+                                defaultValue={profile.Twitter}
                               />
                             </div>
                           </div>
@@ -389,7 +389,7 @@ const EditProfile = () => {
                                 placeholder="@example"
                                 name="Instagram"
                                 onChange={handleChangeEdit}
-                                value={profile.Instagram}
+                                defaultValue={profile.Instagram}
                               />
                             </div>
                           </div>
@@ -407,7 +407,7 @@ const EditProfile = () => {
                                 placeholder="www.example.id"
                                 name="Website"
                                 onChange={handleChangeEdit}
-                                value={profile.Website}
+                                defaultValue={profile.Website}
                               />
                             </div>
                           </div>
@@ -424,7 +424,7 @@ const EditProfile = () => {
                             name="Bio"
                             required
                             onChange={handleChangeEdit}
-                            value={profile.Bio}
+                            defaultValue={profile.Bio}
                           />
                         </div>
                       </div>
