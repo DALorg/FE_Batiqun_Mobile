@@ -45,11 +45,11 @@ const ProductDetail = () => {
       </Head>
       <Header />
       <div className="SectionContainer">
-        <div className="p-[25px]">
-          <div className="overflow-visible rounded-r">
+        <div className="p-[25px] lg:flex lg:flex-col lg:grow lg:shrink lg:basis-[0.7rem]">
+          <div className="ImageE1">
             <Image
               src={global.DataUrl + product.Product_image}
-              className="object-contain rounded flex"
+              className="object-contain"
               layout="responsive"
               width="300px"
               height="300px"
