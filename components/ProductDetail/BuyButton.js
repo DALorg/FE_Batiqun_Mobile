@@ -1,7 +1,6 @@
 import react from "react";
 import { useMoralis, useMoralisFile, useWeb3Transfer } from "react-moralis";
-import { useDispatch } from "react-redux";``
-import Moralis from 'moralis';
+import { useDispatch } from "react-redux";
 import Cookies from 'js-cookie';
 import { BuyProduct } from "../../redux/action/productAction";
 import Web3 from "web3";
@@ -31,7 +30,6 @@ const BuyButton = ({ product }) => {
     const Transfer = async (e) =>{
       e.preventDefault();
       try {
-        await Moralis.enableWeb3();
         Swal.fire({
           title: 'Loading, Please Wait!',
           html: 'I will close in <b></b> milliseconds.',
@@ -75,12 +73,6 @@ const BuyButton = ({ product }) => {
         console.log(error)
       }
     }
-
-    const {fetch, isFetching} = useWeb3Transfer({
-      type: "native",
-      amount: String((product.Harga * 1000000000000000000) + 500000000000000),
-      receiver: randomElement 
-    })
 
     const startPayment = async () => {
       try{
