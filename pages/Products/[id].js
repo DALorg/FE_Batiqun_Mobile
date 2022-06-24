@@ -50,7 +50,7 @@ const ProductDetail = () => {
             <Image
               src={global.DataUrl + product.Product_image}
               className="object-contain"
-              layout="responsive"
+              layout="intrinsic"
               width="500px"
               height="500px"
             />
