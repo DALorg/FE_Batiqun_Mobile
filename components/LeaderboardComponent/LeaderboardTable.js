@@ -14,7 +14,7 @@ const LeaderboardTable = ({ LeaderboardData, loading, error }) => {
         {loading ? (
           <div className="flex items-center justify-center space-x-2">
             <div
-              className="spinner-grow inline-block w-40 h-40 bg-current rounded-full opacity-0"
+              className="spinner-grow inline-block w-20 h-20 bg-current rounded-full opacity-0"
               role="status"
             >
               <span className="visually-hidden">Loading...</span>
@@ -27,7 +27,7 @@ const LeaderboardTable = ({ LeaderboardData, loading, error }) => {
             <>
               <tbody className="text-gray-600 text-sm font-light">
                 <tr className="border-b border-gray-200 hover:bg-gray-100">
-                  <td className="py-3 px-6 text-left">
+                  <td className="py-3 px-4 text-left">
                     <div className="flex items-center">
                       <div className="mr-2">
                         <img
@@ -35,7 +35,7 @@ const LeaderboardTable = ({ LeaderboardData, loading, error }) => {
                           src={global.DataUrl + leaderboards.ProfileImage}
                         />
                       </div>
-                      <span>{leaderboards.FullName}</span>
+                      <span>{leaderboards.FullName?.substring(0, 8)}</span>
                     </div>
                   </td>
                   <td className="py-3 px-3 text-right">
@@ -43,8 +43,8 @@ const LeaderboardTable = ({ LeaderboardData, loading, error }) => {
                       <span>{leaderboards.TotalItems}</span>
                     </div>
                   </td>
-                  <td className="py-3 px-6 text-right">
-                    <div className="flex justify-center">
+                  <td className="py-3 px-6 text-left">
+                    <div className="flex items-center">
                       <i className="fa-brands fa-ethereum m-1" />
                       <span className="text-center font-semibold">
                         {leaderboards.VolumeTraded}
