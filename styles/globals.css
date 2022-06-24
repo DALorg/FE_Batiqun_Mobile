@@ -153,6 +153,7 @@ a {
 }
 
 .ImageE1 {
+  overflow: hidden;
   border-radius: 30px;
   border: 1px solid rgb(229, 232, 235);
 }
