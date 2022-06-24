@@ -1,4 +1,4 @@
-global.apiurl = "https://batiqunapi.azurewebsites.net/";
+global.apiurl = "https://batiqunapimysql20220624114651.azurewebsites.net/";
 global.logo = "https://batiqunapi.azurewebsites.net/Data/sfrb00st.rqn.png";
 global.icon = "https://batiqunapi.azurewebsites.net/Data/jfxpmzjt.cuu.png";
 global.admin = "xDWaCYh8zu5HSyrflQj3Ww__";

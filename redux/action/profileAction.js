@@ -125,11 +125,7 @@ export const addUsers = (objRequestData, token) => async (dispatch) => {
     };
     debugger;
     await axios
-      .post(
-        `https://batiqunapi.azurewebsites.net/api/user/savedata`,
-        testResp,
-        config
-      )
+      .post(global.apiurl + `api/user/savedata`, testResp, config)
       .then((response) => {
         dispatch({
           type: ADD_USERS,

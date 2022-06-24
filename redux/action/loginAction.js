@@ -27,14 +27,11 @@ export const LoginAdmin = (id) => async (dispatch) => {
 
 export const LoginUser = (id) => async (dispatch) => {
   try {
-    const res = await axios.post(
-      `https://batiqunapi.azurewebsites.net/api/user/LoginUser`,
-      {
-        objRequestData: {
-          ethAddress: id,
-        },
-      }
-    );
+    const res = await axios.post(global.apiurl + `api/user/LoginUser`, {
+      objRequestData: {
+        ethAddress: id,
+      },
+    });
     dispatch({
       type: LOGIN_USERS,
       payload: res.data.objData,

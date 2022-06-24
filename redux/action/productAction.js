@@ -44,7 +44,7 @@ export const getById = (ProductId) => async (dispatch) => {
       headers: { Authorization: `Bearer ${Cookies.get("UserData")}` },
     };
     const res = await axios.post(
-      `https://batiqunapi.azurewebsites.net/api/product/get`,
+      global.apiurl + `api/product/get`,
       {
         objRequestData: {
           ProductId: ProductId,
@@ -76,11 +76,7 @@ export const BuyProduct = (objRequestData, token) => async (dispatch) => {
     };
     debugger;
     await axios
-      .post(
-        `https://batiqunapi.azurewebsites.net/api/product/BuyProduct`,
-        testResp,
-        config
-      )
+      .post(global.apiurl + `api/product/BuyProduct`, testResp, config)
       .then((response) => {
         dispatch({
           type: EDIT_PRODUCTS,
