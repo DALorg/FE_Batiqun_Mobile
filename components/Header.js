@@ -19,7 +19,9 @@ const Header = () => {
   return (
     <header className="header" id="header">
       <nav className="nav container">
-        <a href="https://nextjs.org">Batiqun</a>
+        <a href="">
+          <img src={global.logo} className="w-24" />
+        </a>
         {/* <input
             id="quick_search"
             className="xs-hide style-2"
