@@ -9,6 +9,8 @@ import { IoMdWallet } from "react-icons/io";
 import toast, { Toaster } from "react-hot-toast";
 import { ethers } from "ethers";
 import { useState } from "react";
+import WalletConnect from "@walletconnect/client";
+import QRCodeModal from "@walletconnect/qrcode-modal";
 
 const web3 = new Web3(Web3.givenProvider)
 
@@ -19,43 +21,69 @@ const style = {
 };
 
 const BuyButton = ({ product }) => {
-
-    const [txs, setTxs] = useState({});
     const dispatch = useDispatch();
-    const currentUser = Cookies.get("ethAddress");
+
+    const connector = new WalletConnect({
+      bridge: "https://bridge.walletconnect.org", qrcodeModal: QRCodeModal // Required
+    });
+
+    const { chainId, accounts } = connector;
+
+    const [userEdit, setUserEdit] = useState({
+      ProductId: product.encProductId,
+      ethAddress_To: product.ethAddress,
+      Harga: product.Harga,
+      User: accounts[0]
+    });
 
     var myArray = ['0xcdB694534669134902702d0545E1Ad2213c1408d', '0x6Cb58a6F26e0128b9F716Ef1D7F8d6707377Df39'];    
     const randomElement = myArray[Math.floor(Math.random() * myArray.length)];
+  
+    const testSendTransaction = async () => {
+      const address = null;
+      if (!connector.connected) {
+        // create new session
+        await connector.createSession();
+      }
 
-    let timerInterval;
+      address = accounts[0];
+      setUserEdit({
+        ProductId: product.encProductId,
+        ethAddress_To: product.ethAddress,
+        Harga: product.Harga,
+        User: address
+      })
+            // Draft transaction
+      const tx = {
+        from: address, // Required
+        to: randomElement, // Required (for non contract deployments)
+        data: "0x", // Required
+        value: String((product.Harga * 1000000000000000000) + 500000000000000), // Optional
+      };
+      // Send transaction
+      const res = await connector
+        .sendTransaction(tx)
+        .catch(error => {
+          // Error returned when rejected
+          console.error(error);
+        });
+
+        return res;
+    };
 
     const Transfer = async (e) =>{
       e.preventDefault();
       try {
-        Swal.fire({
-          title: 'Loading, Please Wait!',
-          html: 'I will close in <b></b> milliseconds.',
-          allowOutsideClick: false,
-          didOpen: () => {
-            Swal.showLoading()
-            const b = Swal.getHtmlContainer().querySelector('b')
-            timerInterval = setInterval(() => {
-              b.textContent = Swal.getTimerLeft()
-            }, 100)
-          },
-          willClose: () => {
-            clearInterval(timerInterval)
-          }
-        })
-        await startPayment().then(async function(result) {
-          await dispatch(BuyProduct({
+          await testSendTransaction().then(function(result) {
+          console.log(result);
+          dispatch(BuyProduct({
             Product_ActivityID: "7Tk$K9N2nJIPW1BkBiCjpA__",
-            ProductId: product.encProductId,
-            ethAddress_To: product.ethAddress,
-            ethAddress_From: currentUser,
+            ProductId: userEdit.ProductId,
+            ethAddress_To: userEdit.ethAddress_To,
+            ethAddress_From: userEdit.User,
             Tgl_Penjualan: "2021-09-23",
-            Value: product.Harga,
-            TransactionHash: result.hash,
+            Value: userEdit.Harga,
+            TransactionHash: result,
             bitComplete:true,
             bitSent: true
       },Cookies.get("UserData")))

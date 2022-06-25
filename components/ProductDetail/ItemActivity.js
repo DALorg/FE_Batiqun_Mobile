@@ -63,7 +63,7 @@ const ItemActivity = ({ PA }) => {
               Tanggal
             </div>
           </div>
-          {PA.Product_Activities?.map((event, id) => (
+          {PA?.Product_Activities?.map((event, id) => (
             <EventItem key={id} event={event} />
           ))}
         </div>

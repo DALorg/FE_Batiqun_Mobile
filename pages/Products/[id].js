@@ -48,7 +48,7 @@ const ProductDetail = () => {
         <div className="p-[25px]">
           <div className="overflow-visible rounded-r">
             <Image
-              src={global.DataUrl + product.Product_image}
+              src={global.DataUrl + product?.Product_image}
               className="object-contain rounded flex"
               layout="responsive"
               width="300px"
@@ -58,9 +58,9 @@ const ProductDetail = () => {
         </div>
         <div className="RightSection">
           <span>
-            <h1 className="Title">{product.Nama_Product}</h1>
+            <h1 className="Title">{product?.Nama_Product}</h1>
           </span>
-          <p className="Des">{product.Description}</p>
+          <p className="Des">{product?.Description}</p>
           <div className="AuthorContainer justify-between">
             <div className="">
               <label className="CreatorLabel font-extrabold">Pembuat</label>
@@ -72,13 +72,13 @@ const ProductDetail = () => {
                   <Link
                     href={{
                       pathname: "/Profile/[profilid]",
-                      query: { profilid: product.ethAddress },
+                      query: { profilid: product?.ethAddress },
                     }}
                   >
-                    {product.mintedAddress?.substring(0, 7) +
+                    {product?.mintedAddress?.substring(0, 7) +
                       "..." +
-                      product.mintedAddress?.substring(
-                        product.mintedAddress?.length - 7
+                      product?.mintedAddress?.substring(
+                        product?.mintedAddress?.length - 7
                       )}
                   </Link>
                 </span>
@@ -96,22 +96,22 @@ const ProductDetail = () => {
                   <Link
                     href={{
                       pathname: "/Profile/[profilid]",
-                      query: { profilid: product.ethAddress },
+                      query: { profilid: product?.ethAddress },
                     }}
                   >
-                    {product.ethAddress?.substring(0, 7) +
+                    {product?.ethAddress?.substring(0, 7) +
                       "..." +
-                      product.ethAddress?.substring(
-                        product.ethAddress?.length - 7
+                      product?.ethAddress?.substring(
+                        product?.ethAddress?.length - 7
                       )}
                   </Link>
                 </span>
               </span>
             </div>
           </div>
-          {product.TokenID != null &&
-          product.bitMintedStatus == true &&
-          product.txtStatus == "Selling" ? (
+          {product?.TokenID != null &&
+          product?.bitMintedStatus == true &&
+          product?.txtStatus == "Selling" ? (
             <BuyButton product={product} />
           ) : null}
         </div>

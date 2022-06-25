@@ -74,7 +74,6 @@ export const BuyProduct = (objRequestData, token) => async (dispatch) => {
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
-    debugger;
     await axios
       .post(global.apiurl + `api/product/BuyProduct`, testResp, config)
       .then((response) => {
