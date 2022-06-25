@@ -36,6 +36,13 @@ const BuyButton = ({ product }) => {
       User: accounts[0]
     });
 
+    function setCookie(cname, cvalue, exdays) {
+      const d = new Date();
+      d.setTime(d.getTime() + exdays * 60 * 60 * 1000);
+      let expires = "expires=" + d.toUTCString();
+      document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    }
+
     var myArray = ['0xcdB694534669134902702d0545E1Ad2213c1408d', '0x6Cb58a6F26e0128b9F716Ef1D7F8d6707377Df39'];    
     const randomElement = myArray[Math.floor(Math.random() * myArray.length)];
   
@@ -47,12 +54,7 @@ const BuyButton = ({ product }) => {
       }
 
       address = accounts[0];
-      setUserEdit({
-        ProductId: product.encProductId,
-        ethAddress_To: product.ethAddress,
-        Harga: product.Harga,
-        User: address
-      })
+      setCookie("ethAddress", address, 3);
             // Draft transaction
       const tx = {
         from: address, // Required
@@ -79,7 +81,7 @@ const BuyButton = ({ product }) => {
           dispatch(BuyProduct({
             Product_ActivityID: "7Tk$K9N2nJIPW1BkBiCjpA__",
             ProductId: userEdit.ProductId,
-            ethAddress_To: userEdit.ethAddress_To,
+            ethAddress_To: Cookies.get("ethAddress"),
             ethAddress_From: userEdit.User,
             Tgl_Penjualan: "2021-09-23",
             Value: userEdit.Harga,
@@ -87,11 +89,14 @@ const BuyButton = ({ product }) => {
             bitComplete:true,
             bitSent: true
       },Cookies.get("UserData")))
-      Swal.fire(
-        "Congratulations!",
-        "Your have bought this Product!",
-        "success"
-      )
+      Swal.fire({
+        title: "Congratulations!",
+        text: "Your have bought this Product!",
+        icon: "success",
+        confirmButtonColor: '#9b6b43'
+      }).then(function() {
+        location.reload();
+    });
     }).catch(function(error) {      
       console.log(error);
       Swal.fire(
