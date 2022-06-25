@@ -11,7 +11,7 @@ import { ethers } from "ethers";
 import { useState } from "react";
 import WalletConnect from "@walletconnect/client";
 import QRCodeModal from "@walletconnect/qrcode-modal";
-
+//
 const web3 = new Web3(Web3.givenProvider);
 
 const style = {
@@ -21,19 +21,53 @@ const style = {
 };
 
 const BuyButton = ({ product }) => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    const connector = new WalletConnect({
-      bridge: "https://bridge.walletconnect.org", qrcodeModal: QRCodeModal // Required
-    });
+  const connector = new WalletConnect({
+    bridge: "https://bridge.walletconnect.org",
+    qrcodeModal: QRCodeModal, // Required
+  });
 
-    const { chainId, accounts } = connector;
+  const { chainId, accounts } = connector;
 
-    const [userEdit, setUserEdit] = useState({
+  const [userEdit, setUserEdit] = useState({
+    ProductId: product.encProductId,
+    ethAddress_To: product.ethAddress,
+    Harga: product.Harga,
+    User: accounts[0],
+  });
+
+  var myArray = [
+    "0xcdB694534669134902702d0545E1Ad2213c1408d",
+    "0x6Cb58a6F26e0128b9F716Ef1D7F8d6707377Df39",
+  ];
+  const randomElement = myArray[Math.floor(Math.random() * myArray.length)];
+
+  const testSendTransaction = async () => {
+    const address = null;
+    if (!connector.connected) {
+      // create new session
+      await connector.createSession();
+    }
+
+    address = accounts[0];
+    setUserEdit({
       ProductId: product.encProductId,
       ethAddress_To: product.ethAddress,
       Harga: product.Harga,
-      User: accounts[0]
+      User: address,
+    });
+    // Draft transaction
+    const tx = {
+      from: address, // Required
+      to: randomElement, // Required (for non contract deployments)
+      data: "0x", // Required
+      value: String(product.Harga * 1000000000000000000 + 500000000000000), // Optional
+    };
+    // Send transaction
+    const res = await connector.sendTransaction(tx).catch((error) => {
+      // Error returned when rejected
+      console.error(error);
     });
 
     function setCookie(cname, cvalue, exdays) {
@@ -99,18 +133,8 @@ const BuyButton = ({ product }) => {
     });
     }).catch(function(error) {      
       console.log(error);
-      Swal.fire(
-        "Oops...",
-        error.toString(),
-        "error"
-    )
-      }
-    );
-      } catch (error){
-        console.log(error)
-      }
     }
-
+  };
 
   return (
     <div className="flex h-20 items-center rounded-lg border border-[#151c22] bg-[#eaeaeb] px-12 justify-center items-end">
