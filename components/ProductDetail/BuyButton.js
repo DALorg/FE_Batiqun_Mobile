@@ -1,7 +1,7 @@
 import react from "react";
 import { useMoralis, useMoralisFile, useWeb3Transfer } from "react-moralis";
 import { useDispatch } from "react-redux";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 import { BuyProduct } from "../../redux/action/productAction";
 import Web3 from "web3";
 import Swal from "sweetalert2";
@@ -12,12 +12,12 @@ import { useState } from "react";
 import WalletConnect from "@walletconnect/client";
 import QRCodeModal from "@walletconnect/qrcode-modal";
 
-const web3 = new Web3(Web3.givenProvider)
+const web3 = new Web3(Web3.givenProvider);
 
 const style = {
-  button: `mr-8 flex items-center py-2 px-12 rounded-lg cursor-pointer`,
-  buttonIcon: `text-xl`,
-  buttonText: `ml-2 text-lg font-semibold`,
+  button: `flex items-center py-2 px-12 rounded-lg cursor-pointer`,
+  buttonIcon: `text-xl text-white`,
+  buttonText: `ml-2 text-lg font-semibold text-[#fff]`,
 };
 
 const BuyButton = ({ product }) => {
@@ -106,47 +106,17 @@ const BuyButton = ({ product }) => {
       }
     }
 
-    const startPayment = async () => {
-      try{
-        if(!window.ethereum){
-
-        }
-        await window.ethereum.send("eth_requestAccounts");
-        const providers = new ethers.providers.Web3Provider(window.ethereum);
-        const signer = providers.getSigner();
-        ethers.utils.getAddress(randomElement);
-        const tx = await signer.sendTransaction({
-          to: randomElement,
-          value: String((product.Harga * 1000000000000000000) + 500000000000000)
-        });
-        return tx;
-      }catch{
-
-      }
-    }
 
   return (
     <div className="flex h-20 items-center rounded-lg border border-[#151c22] bg-[#eaeaeb] px-12 justify-center items-end">
-    <Toaster position="bottom-left" reverseOrder={false} />
-
-    <div
-      onClick={Transfer}
-      className={`${style.button} bg-[#2081e2] hover:bg-[#42a0ff] content-end`}
-    >
-      <IoMdWallet className={style.buttonIcon} />
-      <div className={style.buttonText}>Buy Now</div>
-    </div>
-    {/* <div
-      className={`${style.button} border border-[#151c22]  bg-[#363840] hover:bg-[#4c505c]`}
-    >
-      <HiTag className={style.buttonIcon} />
-      <div className={style.buttonText}>Make Offer</div>
-    </div> */}
-    {/* <div className={`${style.button} bg-[#2081e2] hover:bg-[#42a0ff]`}>
+      <div
+        onClick={Transfer}
+        className={`${style.button} bg-yellow-700 hover:bg-yellow-800 content-end`}
+      >
         <IoMdWallet className={style.buttonIcon} />
-        <div className={style.buttonText}>List Item</div>
-      </div> */}
-  </div>
+        <div className={style.buttonText}>Buy Now</div>
+      </div>
+    </div>
   );
 };
 
