@@ -79,7 +79,7 @@ export default function Products() {
                   fill="currentColor"
                 />
               </svg>
-              Load more
+              Muat lebih banyak
             </button>
           </div>
         </div>

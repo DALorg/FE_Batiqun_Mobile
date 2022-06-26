@@ -190,7 +190,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className={style.midRow}>
+          <div className={`${style.midRow} pb-16`}>
             <div className="w-full mx-auto mt-4 rounded">
               <ul
                 id="tabs"

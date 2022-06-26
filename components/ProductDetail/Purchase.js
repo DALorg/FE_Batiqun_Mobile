@@ -71,7 +71,7 @@ const MakeOffer = ({ isListed, selectedNft, listings, marketPlaceModule }) => {
         className={`${style.button} bg-[#2081e2] hover:bg-[#42a0ff] content-end`}
       >
         <IoMdWallet className={style.buttonIcon} />
-        <div className={style.buttonText}>Buy Now</div>
+        <div className={style.buttonText}>Beli sekarang</div>
       </div>
       {/* <div
         className={`${style.button} border border-[#151c22]  bg-[#363840] hover:bg-[#4c505c]`}

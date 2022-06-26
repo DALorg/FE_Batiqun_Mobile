@@ -77,7 +77,7 @@ const KaryaCard = ({ ProductData, loading, error }) => {
                           query: { id: product.encProductId },
                         }}
                       >
-                        <button className="buy-btn">Buy</button>
+                        <button className="buy-btn">Beli</button>
                       </Link>
                     </div>
                     <div className="card-body">

@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import "../../GlobalVariable";
 import Cookies from "js-cookie";
 import axios from "axios";
+import Link from "next/link";
 
 const ProductCard = ({ ProductData, loading, error, isFav }) => {
   const handleFav = (ProductId) => {
@@ -61,7 +62,14 @@ const ProductCard = ({ ProductData, loading, error, isFav }) => {
                       height="250"
                     />
                   )}
-                  <button className="buy-btn">Buy</button>
+                  <Link
+                    href={{
+                      pathname: "/Products/[id]",
+                      query: { id: product.encProductId },
+                    }}
+                  >
+                    <button className="buy-btn">Beli</button>
+                  </Link>
                 </div>
                 <div className="card-body">
                   <h4 className="product-name">
