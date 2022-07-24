@@ -9,7 +9,6 @@ import KaryaCard from "../components/HomePage-Components/KaryaCard";
 import UserLists from "../components/HomePage-Components/UserList";
 import Header from "../components/Header";
 import { useRouter } from "next/dist/client/router";
-
 export default function Home() {
   const dispatch = useDispatch();
   const allProductsData = useSelector((state) => state.Homes);
@@ -19,7 +18,6 @@ export default function Home() {
   useEffect(() => {
     dispatch(getHomepage());
   }, []);
-
   return (
     <div>
       <Head>
@@ -31,16 +29,13 @@ export default function Home() {
           href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
         />
       </Head>
-
       <Header />
-
       <main>
         <KaryaCard
           ProductData={homes.RencentProduct}
           loading={loading}
           error={error}
         />
-
         <UserLists UserData={homes.Users} loading={loading} error={error} />
       </main>
     </div>

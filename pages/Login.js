@@ -150,7 +150,8 @@ export default function Login() {
                           <button
                             onClick={login}
                             type="button"
-                            className="px-4 py-3 bg-yellow-800 rounded-md text-white outline-none focus:ring-4 shadow-lg transform active:scale-75 transition-transform flex"
+                            className="px-4 py-3 bg-yellow-800 rounded-md text-white outline-none
+                             focus:ring-4 shadow-lg transform active:scale-75 transition-transform flex"
                           >
                             <img src="image5.png" className="w-10 h-10"></img>{" "}
                             <span className="mt-2">Connect with Metamask</span>

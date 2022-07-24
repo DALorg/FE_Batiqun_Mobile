@@ -34,7 +34,8 @@ export default function Home() {
 
       <main>
         <div className="overflow-x-auto">
-          <div className="min-w-screen max-w-screen mt-16 flex items-center justify-center font-sans overflow-hidden m-10">
+          <div className="min-w-screen max-w-screen mt-16 flex items-center 
+          justify-center font-sans overflow-hidden m-10">
             <div className="w-full lg:w-5/6">
               <div className="bg-white shadow-md rounded my-6"></div>
               <LeaderboardTable
