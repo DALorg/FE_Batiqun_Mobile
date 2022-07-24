@@ -7,7 +7,6 @@ const LeaderboardTable = ({ LeaderboardData, loading, error }) => {
         <thead>
           <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
             <th className="py-3 px-6 text-left">Nama</th>
-            <th className="py-3 px-6 text-center">Item dimiliki</th>
             <th className="py-3 px-6 text-center">Volume Transaksi</th>
           </tr>
         </thead>
@@ -36,11 +35,6 @@ const LeaderboardTable = ({ LeaderboardData, loading, error }) => {
                         />
                       </div>
                       <span>{leaderboards.FullName?.substring(0, 8)}</span>
-                    </div>
-                  </td>
-                  <td className="py-3 px-3 text-right">
-                    <div className="flex items-center justify-center">
-                      <span>{leaderboards.TotalItems}</span>
                     </div>
                   </td>
                   <td className="py-3 px-6 text-left">
