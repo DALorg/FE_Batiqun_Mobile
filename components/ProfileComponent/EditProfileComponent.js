@@ -407,7 +407,7 @@ const EditProfileComponent = ({ loading, error, profile, bitSuccessEdit }) => {
                     <div className="row">
                       <div className="col-lg-6 text-start">
                         <Link href={{ pathname: "/Profile" }}>
-                          <a className="mt-4 text-white bg-[#9b6b43] hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 dark:bg-[#9b6b43] dark:hover:bg-[#744c24] dark:focus:ring-blue-800 inline-flex ">
+                          <a className="mt-4 text-white bg-[#9b6b43] hover:bg-[#744c24] font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 dark:bg-[#9b6b43] dark:hover:bg-[#744c24] dark:focus:ring-blue-800 inline-flex ">
                             Cancel
                           </a>
                         </Link>
