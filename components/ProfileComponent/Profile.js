@@ -1,6 +1,8 @@
 import React from "react";
-import axios from "axios"
+import axios from "axios";
 import ProductCard from "../../components/Product-Components/ProductCard";
+
+import { useRouter } from "next/router";
 
 const style = {
   bannerImageContainer: `h-64 w-screen overflow-hidden flex justify-center items-center`,
@@ -45,6 +47,7 @@ const ProfileComponent = ({
     window.location.replace("/Login");
   }
 
+  const router = useRouter();
   function logoff() {
     deleteAllCookies();
     logout();
