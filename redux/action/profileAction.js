@@ -36,7 +36,7 @@ export const getUsers = (id, token) => async (dispatch) => {
 };
 
 export const getProfile =
-  (id, currentid, token, isCreated, isFav, Page, Length) =>
+  (id, currentid, token, isCreated, isFav, Page, isSold, Length) =>
   async (dispatch) => {
     try {
       const config = {
@@ -52,6 +52,7 @@ export const getProfile =
             CurrentethAddress: currentid,
             bitCreated: isCreated,
             bitFav: isFav,
+            bitSold: isSold,
           },
         },
         config

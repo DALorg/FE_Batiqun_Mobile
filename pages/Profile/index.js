@@ -23,9 +23,10 @@ export default function Profile() {
   const { loading, error, profile } = allProfileData;
   const { logout } = useMoralis();
   const router = useRouter();
-  const { isCreated, isFav, Page } = router.query;
+  const { isCreated, isFav, isSold, Page } = router.query;
   var created = false;
   var favorite = false;
+  var sold = false;
   var Pagess = 0;
   var TotalDisplayed = 4;
   if (isCreated) {
@@ -33,6 +34,9 @@ export default function Profile() {
   }
   if (isFav) {
     favorite = true;
+  }
+  if (isSold) {
+    sold = true;
   }
   if (Page == null) {
     Pagess = 1;
@@ -49,10 +53,12 @@ export default function Profile() {
         created,
         favorite,
         Pagess,
+        sold,
         TotalDisplayed
       )
     );
   }, []);
+  console.log(profile);
   return (
     <div>
       <Head>
@@ -67,6 +73,7 @@ export default function Profile() {
         profile={profile}
         isCreated={isCreated}
         isFav={isFav}
+        isSold={isSold}
         Page={Page}
       />
     </div>

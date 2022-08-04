@@ -33,7 +33,7 @@ const ProductDetail = ({ loading, error, product }) => {
                 <Link
                   href={{
                     pathname: "/Profile/[profilid]",
-                    query: { profilid: product?.ethAddress },
+                    query: { profilid: product?.mintedAddress },
                   }}
                 >
                   {product?.mintedAddress?.substring(0, 7) +

@@ -32,9 +32,9 @@ const style = {
   createdBy: `text-sm font-light mb-4`,
   statsContainer: `w-[78vw] flex justify-between py-4 border border-[#151b22] rounded-xl mb-4`,
   collectionStat: `w-1/4`,
-  statValue: `text-3xl sm:text-sm xs:text-xs lg:text-3xl font-bold w-full flex items-center justify-center`,
+  statValue: `text-xl sm:text-sm xs:text-xs lg:text-3xl font-bold w-full flex items-center justify-center`,
   ethLogo: `h-6 mr-2`,
-  statName: `text-lg w-full text-center mt-1`,
+  statName: `text-[10px] w-full text-center mt-1`,
   description: `text-[#8a939b] text-xl w-max-1/4 flex-wrap mt-4`,
 };
 
@@ -45,15 +45,19 @@ export default function Home() {
   const { logout } = useMoralis();
 
   const router = useRouter();
-  const { profilid, isCreated, isFav, Page } = router.query;
+  const { profilid, isCreated, isFav, isSold, Page } = router.query;
 
   var created = false;
   var favorite = false;
+  var sold = false;
   var Pagess = 0;
   var TotalDisplayed = 4;
 
   if (isCreated) {
     created = true;
+  }
+  if (isSold) {
+    sold = true;
   }
 
   if (isFav) {
@@ -77,6 +81,7 @@ export default function Home() {
           created,
           favorite,
           Pagess,
+          sold,
           TotalDisplayed
         )
       );
@@ -185,6 +190,13 @@ export default function Home() {
                 </div>
                 <div className={style.statName}>Favorit</div>
               </div>
+              <div className={style.collectionStat}>
+                <div className={style.statValue}>
+                  <i className="fa-brands fa-ethereum"></i>
+                  {profile?.VolumeTraded?.toString().substr(0, 3)}
+                </div>
+                <div className={style.statName}>Pendapatan</div>
+              </div>
             </div>
           </div>
           <div className={style.midRow}>
@@ -198,7 +210,9 @@ export default function Home() {
                     id="default-tab"
                     href="./Profile"
                     className={
-                      !isCreated && !isFav ? "nav__link active-link" : "link"
+                      !isCreated && !isFav && !isSold
+                        ? "nav__link active-link"
+                        : "link"
                     }
                   >
                     Koleksi
@@ -218,6 +232,14 @@ export default function Home() {
                     className={isFav ? "nav__link active-link" : "link"}
                   >
                     Favorit
+                  </a>
+                </li>
+                <li className="px-4 py-2 font-semibold text-gray-800 rounded-t opacity-50">
+                  <a
+                    href="./Profile?isSold=true"
+                    className={isSold ? "nav__link active-link" : "link"}
+                  >
+                    Terjual
                   </a>
                 </li>
               </ul>
