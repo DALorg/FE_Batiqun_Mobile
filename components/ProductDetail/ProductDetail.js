@@ -22,6 +22,11 @@ const ProductDetail = ({ loading, error, product }) => {
           <h1 className="Title">{product?.Nama_Product}</h1>
         </span>
         <p className="Des">{product?.Description}</p>
+        <p className="text-4xl">
+          {" "}
+          <i className="fa-brands fa-ethereum"></i>&nbsp;
+          {product?.Harga}
+        </p>
         <div className="AuthorContainer justify-between">
           <div className="">
             <label className="CreatorLabel font-extrabold">Pembuat</label>
