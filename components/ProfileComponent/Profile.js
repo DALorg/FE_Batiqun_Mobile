@@ -127,10 +127,7 @@ const ProfileComponent = ({
                 <div className={style.statName}>Dimiliki</div>
               </div>
               <div className={style.collectionStat}>
-                <div className={style.statValue}>
-                  <i className="fa-brands fa-ethereum"></i>
-                  {profile.TotalFavorite}
-                </div>
+                <div className={style.statValue}>{profile.TotalFavorite}</div>
                 <div className={style.statName}>Favorit</div>
               </div>
               <div className={style.collectionStat}>
@@ -146,7 +143,7 @@ const ProfileComponent = ({
             <div className="w-full mx-auto mt-4 rounded">
               <ul
                 id="tabs"
-                className="inline-flex w-full px-2 pt-2 pb-4 border-b-2"
+                className="overflow-x-auto flex w-full px-2 pt-2 pb-4 border-b-2"
               >
                 <li className="px-4 py-2 -mb-px font-semibold text-gray-800 rounded-t opacity-50">
                   <a
