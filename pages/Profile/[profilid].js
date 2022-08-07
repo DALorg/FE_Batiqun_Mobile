@@ -200,7 +200,7 @@ export default function Home() {
             <div className="w-full mx-auto mt-4 rounded">
               <ul
                 id="tabs"
-                className="inline-flex w-full px-2 pt-2 pb-4 border-b-2"
+                className="overflow-x-auto flex w-full px-2 pt-2 pb-4 border-b-2"
               >
                 <li className="px-4 py-2 -mb-px font-semibold text-gray-800 rounded-t opacity-50">
                   <a
